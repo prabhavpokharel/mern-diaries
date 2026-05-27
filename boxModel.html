@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* universal selector */
+        *{      
+            margin: 0;
+
+            box-sizing: border-box;
+             /* content-box: the default value, the width and height properties include only the content, not the padding, border, or margin. */
+             /* border-box: the width and height properties include the content, padding, and border, but not the margin. */
+        }
+        div{
+            /* width: 200px; */
+            height: 200px;
+            background-color: red;
+
+            /* don't use height and margin unless necessary */
+        }
+
+        .demo1{
+            background-color: yellow;
+        }
+        .demo2{
+            background-color: blue;
+
+            /* individual sides */
+            /* margin-top: 20px;
+            margin-right: 50px;
+            margin-bottom: 30px;
+            margin-left: 40px; */
+
+            /* shorthand property */
+            /* 4 sides */
+            /* margin: 50px; */
+
+            /* top, bottom     left, right */
+            /* margin: 20px 50px; */
+
+            /* top     left, right     bottom */
+            /* margin: 20px 50px 30px; */
+
+            /* top     right     bottom    left */
+            /* margin: 20px 50px 30px 40px; */
+            /* for easiness look clock-wise */
+
+            /* the last same property has the highest precedence */
+
+            width: 70%;
+            /* percentage means relative to the parent element's width */
+            margin: 20px auto 30px;
+
+            /* height: auto; */
+            /* for height prefer using height: auto; */
+            font-size: 20px;
+            text-align: justify;
+
+            /* padding is the space between the content and the border */
+            padding-top: 20px;
+            padding-right: 50px;
+            padding-bottom: 30px;
+            padding-left: 40px;
+
+            padding: 30px;
+            padding: 30px 50px;
+            padding: 30px 40px 20px;
+            padding: 10px 20px 49px 20px;
+
+            color: yellow; /* this color applies to the text content and border if a border is specified */
+
+            /* to activate border you need to specify a border style, width, and color */
+            border-width: 5px;
+            border-style: solid; /* solid, dashed, dotted, double, groove, ridge, inset, outset, none, hidden */
+            border-color: black;
+
+            border-left-color: red;
+            border-right-style: dashed;
+            border-bottom-width: 10px;
+
+            /* shorthand property for border */
+            border: 5px solid black; /* border-width border-style border-color */
+            border-left: red 30px double; /* border-color border-width border-style */
+            border-right: dotted blue 15px; /* border-style border-color border-width */
+
+            /* outline is a property that draws a line around an element, outside the border. use this like border mostly for inputs. */
+            /* outline: 20px solid orange; */
+
+            /* border-radius creates rounded corners for an element */
+            border-radius: 20px; /* all corners */
+            border-radius: 20px 10px; /* top-left and bottom-right     top-right and bottom-left */
+            border-radius: 20px 10px 30px; /* top-left     top-right and bottom-left     bottom-right */
+            border-radius: 20px 10px 30px 40px; /* top-left     top-right     bottom-right     bottom-left */
+
+            border-top-left-radius: 20px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 30px;
+            border-bottom-left-radius: 40px;    
+
+            /* to make it look like circle we can set all border-radius values to 50% */
+            /* also make sure that height equals width */
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+        }
+        .demo3{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="demo1"></div>
+    <div class="demo2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate at numquam, esse delectus reiciendis maiores explicabo iste praesentium sapiente odit, rem earum nihil optio, dolorum placeat. Quo animi consequatur harum!
+    </div>
+    <div class="demo3"></div>
+    
+</body>
+</html>
