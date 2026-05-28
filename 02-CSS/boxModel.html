@@ -104,14 +104,31 @@
             height: 200px;
             width: 200px;
             border-radius: 50%;
+
+            /* box shadow */
+            box-shadow: 50px 50px gray; /* horizontal offset, vertical offset, color */
+            box-shadow: 50px -50px 20px gray; /* horizontal offset, vertical offset, blur radius, color */
+            /* the blur radius is the distance over which the shadow will fade out. a larger blur radius will create a softer shadow, while a smaller blur radius will create a sharper shadow. */
+
+            /* you can also specify an optional spread radius, which controls the size of the shadow. a positive spread radius will make the shadow larger, while a negative spread radius will make it smaller. */
+            box-shadow: 50px 50px 20px 10px gray; /* horizontal offset, vertical offset, blur radius, spread radius, color */
+
+            /* you can also specify an optional inset keyword to create an inner shadow instead of an outer shadow. */
+            box-shadow: inset 50px 50px 20px 10px pink; /* inset horizontal offset, vertical offset, blur radius, spread radius, color */
+            
+            box-shadow: 50px 50px 10px 20px pink, 50px 50px 10px red, -20px -20px 10px skyblue, -30px -30px 30px 20px purple;
         }
         .demo3{
             background-color: green;
         }
+        h1{
+            font-size: 120px;
+            text-shadow: 10px 10px 5px gray; /* horizontal offset, vertical offset, [blur radius], [color] but inset and spread cannot be used */
+        }
     </style>
 </head>
 <body>
-
+    <h1>HELLO WORLD</h1>
     <div class="demo1"></div>
     <div class="demo2">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate at numquam, esse delectus reiciendis maiores explicabo iste praesentium sapiente odit, rem earum nihil optio, dolorum placeat. Quo animi consequatur harum!

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo1{
+            height: 300px;
+            background-color: red;
+            background-color: rgb(100, 200, 50); /* rgb(red, green, blue) ranges from 0 to 255 but if you specify a value greater than 255, it will be clamped to 255 */
+            background-color: rgba(100, 200, 50, 0.5); /* rgba(red, green, blue, alpha) where alpha means opacity and ranges from 0 to 1 */
+            background-color: hsl(120, 100%, 50%); /* hsl(hue, saturation, lightness) where hue is an angle on the color wheel (0-360), saturation is a percentage (0-100%), and lightness is a percentage (0-100%) */
+            background-color: hsla(120, 100%, 50%, 0.5); /* hsla(hue, saturation, lightness, alpha) where alpha means opacity and ranges from 0 to 1 */
+            background-color: #64c8FF; /* hexadecimal color code where the first two digits represent red, the next two represent green, and the last two represent blue. Each pair of digits can range from 00 to FF (0 to 255 in decimal) */
+            
+            /* to get gray use same values for all three color components */
+            background-color: #646464;
+
+            background-color: #11889099; /* the last two digits represent the alpha channel (opacity) and the next six digits represent the RGB color */
+
+            /* we can also just use three digits for hexadecimal */
+            background-color: #6c8; /* equivalent to #66cc88 */
+
+            opacity: 0.7; /* this will make the entire element, including its content, semi-transparent */            
+        
+            height: 500vh; /* this will make the height of the element equal to 500% of the viewport height */
+        }
+        .body{
+            background-image: url('https://nepalhimalpeakprofile.org/images/nma/image/200927060957manaslu_(west_face_from_timang_j7d_4411).jpg');
+            background-clip: text; /* this will make the bg color only apply to the text and not the entire element */
+            background-attachment: fixed; /* this will make the background image fixed in place and not scroll with the content */
+        }
+        h1{
+            font-size: 180px;
+            color: transparent; /* this will make the text color transparent so that only the background image is visible */
+        }
+    </style>
+</head>
+<body>
+    <div class="body">
+        <h1>Hello World</h1>
+    </div>
+    <div class="demo1"></div>
+</body>
+</html>
