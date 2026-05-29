@@ -24,7 +24,7 @@
 
             opacity: 0.7; /* this will make the entire element, including its content, semi-transparent */            
         
-            height: 500vh; /* this will make the height of the element equal to 500% of the viewport height */
+            /* height: 500vh; this will make the height of the element equal to 500% of the viewport height */
         }
         .body{
             background-image: url('https://nepalhimalpeakprofile.org/images/nma/image/200927060957manaslu_(west_face_from_timang_j7d_4411).jpg');
@@ -35,6 +35,59 @@
             font-size: 180px;
             color: transparent; /* this will make the text color transparent so that only the background image is visible */
         }
+        .demo2{
+            height: 30vh;
+
+            background-image: linear-gradient(75deg,red 25%, rgb(255, 255, 0), #0000ff, transparent); /* this will create a linear gradient background that transitions from red to yellow to blue to transparent */
+
+            /* to set the length of the gradient add length values */
+        }
+        .demo3{
+            height: 30vh;
+            background-image: repeating-linear-gradient(75deg, red 25%, rgb(255,255,0) 80%, #0000ff, transparent 90%); /* this will create a repeating linear gradient background that transitions from red to yellow to blue to transparent and repeats every 100% of the element's width */
+        }
+        .demo4{
+            height: 30vh;
+            background-image: radial-gradient(circle, red 25%, rgb(255,255,0) 80%, #0000ff, transparent 90%); /* this will create a radial gradient background that transitions from red to yellow to blue to transparent in a circular pattern and repeats every 100% of the element's width */
+            /* default is not circle but ellipse, other than circle and ellipse we can also write 300px to specify the radius */
+        }        
+        .demo5{
+            height: 30vh;
+            background-image: radial-gradient(300px 500px at 0px 0px, red 25%, rgb(255,255,0) 80%, #0000ff, transparent 90%); /* this will create a radial gradient background that transitions from red to yellow to blue to transparent in an elliptical pattern with a horizontal radius of 300px and a vertical radius of 500px and we can change center position by specifying x and y coordinates in either percentage or pixels */
+        }
+        .demo6{
+            height: 30vh;
+            background-image: repeating-radial-gradient(300px 500px at 50% 50%, red 25%, rgb(255,255,0) 80%, #0000ff, transparent 90%);
+        }
+        .demo7{
+            background-image: url('https://www.nrdc.org/sites/default/files/styles/huge_16x9_100/public/2023-03/nrdc-nature-and-wildlife-1062342328.jpg.jpg?h=58c8a5e7&itok=r0rtlSiF'); /* in default for large image the top-left is shown */
+
+            background-position: center; /* this will center the background image within the element but it will not change the size of the image so if the image is larger than the element, it will be cropped. some more options are top, bottom, left, right */
+
+            background-attachment: fixed; /* this will make the background image fixed in place and not scroll with the content like a parallax effect */
+
+            height: 30vh;
+            width: 50%;
+        }
+        .demo8{
+            background-image: url('https://public.blenderkit.com/thumbnails/assets/3a355824748947b7b4dc99f5f9ba87fb/files/thumbnail_7a51a344-b8bb-40a6-b222-23f7ab30f906.jpg.256x256_q85_crop-%2C.jpg.webp?webp_generated=1777877200'); /* here the image is smaller than the element so it will be repeated both horizontally and vertically to fill the entire element but we can turn off the repetition by setting background-repeat to no-repeat */
+            background-repeat: no-repeat; /* no-repeat, repeat-x, repeat-y, space, round where no-repeat means the image will not be repeated, repeat-x means it will be repeated horizontally, repeat-y means it will be repeated vertically, space means the image will be spaced out, round means the image will be scaled to fit */
+            
+            /* background-size: 50% 100%; */
+
+            background-position: center; /* for this smaller image the default is top-left but we can change it to center or any other position */
+
+            background-size: contain; 
+            /* in background-size there are several options: contain, cover, auto, and specific values like 50% 100% */
+
+            /* for best result, use contain and turn off repetition */
+            /* if we keep image and color both then the color will be shown behind the image */
+
+            background: yellow linear-gradient(red, yellow) url(''); /* this is the shorthand property for background where we can specify color, image, position, size, repeat, and other properties in any order but if we specify background-image in the shorthand then we cannot specify background-color separately because it will be overridden by the shorthand */
+
+            height: 60vh;
+            width: 50%;
+        }
     </style>
 </head>
 <body>
@@ -42,5 +95,13 @@
         <h1>Hello World</h1>
     </div>
     <div class="demo1"></div>
+    <div class="demo2"></div>
+    <div class="demo3"></div>
+    <div class="demo4"></div>
+    <div class="demo5"></div>
+    <div class="demo6"></div>
+
+    <div class="demo7"></div>
+    <div class="demo8"></div>
 </body>
 </html>

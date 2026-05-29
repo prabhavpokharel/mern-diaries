@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- invisible content of webpage - page information - style, meta tags, title, CDN (Content Delivery Network) links, few scripts, seo tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Webpage</title>
+</head>
+
+<body>
+    <!-- visible content of webpage -->
+
+    <!-- 
+        elements -> 2 types
+            1. container elements/tags
+                opening tag - content - closing tag
+                e.g: <h1>...</h1>, <p>...</p>
+            2. empty/void elements/tags
+                e.g: <br>, <hr>, <input>, <img>
+
+        elements types -> based on size
+            1. block-level elements
+                - always starts on a new line
+                - takes up the full width available (stretches out to the left and right as far as it can)
+                - height and width can be set
+                - cannot be nested inside inline elements
+                - e.g: <div>, <h1>, <p>, <header>, <footer>, <section>, <article>, <nav>, <aside>
+            2. inline elements
+                - does not start on a new line
+                - only takes up as much width as necessary
+                - height and width cannot be set
+                - can be nested inside block-level elements
+                - can be nested inside inline elements
+                - e.g: <span>, <a>, <strong>, <em>, <img>
+
+            NOTE: the above categorization is not strict and there are some elements that can behave as both block-level and inline elements depending on the context and CSS properties applied to them. For example, <a> is an inline element by default but can be styled to behave like a block-level element using CSS properties like display: block; or display: inline-block;
+
+            properties of block and inline elements can be shared using the display property in CSS. e.g: display: inline-block; allows an element to have the characteristics of both block-level and inline elements. It will start on a new line and take up the full width available, but it will also allow height and width to be set and can be nested inside inline elements.
+     -->
+
+    <h1>Hello World</h1>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.<br><br><br>Hello there
+    <br>
+    <hr>
+    <input type="text">
+    <img src="" alt="Image not found">
+    <br>
+    <br>
+    <br>
+
+    <header style="background-color: yellow; height: 200px; width: 50%; display: inline;">
+        <!-- display: inline; makes the header behave like an inline element whereas, display: block; makes an inline element behave like a block-level element -->
+        This is a header
+    </header>
+    <div>Division</div>
+    <p style="background-color: yellow">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate at numquam, esse delectus reiciendis maiores
+        explicabo iste praesentium sapiente odit, rem earum nihil optio, dolorum placeat. Quo animi consequatur harum!
+    </p>
+
+    <span style="background-color: lavender">This is <b>an</b> <u>inline</u> element</span>
+    <a href="https://www.google.com"
+        style="background-color:crimson; height: 200px; width: 50%; display: inline-block;">Click here</a>
+
+    <br>
+    <b>Bold vs Strong</b>
+    <strong>Strong vs Bold</strong>
+    <br>
+    <i>Italic vs Emphasis</i>
+    <em>Emphasis vs Italic</em>
+    <!-- the strong and em were introduced in HTML5 -->
+
+    <!-- 
+        HTML5 features includes:
+            1. code semantics - new tags that provide meaning to the content they contain, making it easier for search engines and assistive technologies to understand the structure and content of a webpage. e.g: <header>, <footer>, <section>, <article>, <nav>, <aside>, <figure>, <figcaption>, <main>, <mark>, <time>, <progress>, <meter>
+            2. code accessibility - new attributes and features that improve the accessibility of web content for users with disabilities. e.g: aria-label, aria-hidden, role, tabindex, alt, title
+            3. multimedia support - new tags and APIs that allow for the embedding and manipulation of multimedia content such as audio and video. e.g: <audio>, <video>, <source>, <track>, <canvas>, <svg>
+            4. modern form controls - new form elements and attributes that provide enhanced functionality and improved user experience. e.g: <input type="email">, <input type="tel">, <input type="url">, <input type="date">, <input type="time">, <input type="color">, <datalist>, <output>, <progress>, <meter>
+            5. responsive design - new features and techniques that enable the creation of responsive web designs that adapt to different screen sizes and devices. e.g: media queries, flexible grid layouts, responsive images, viewport meta tag
+            6. animations and transitions - new CSS properties and JavaScript APIs that allow for the creation of animations and transitions on web pages. e.g: @keyframes, animation, transition, transform, requestAnimationFrame
+            7. localStorage and sessionStorage - new web storage APIs that allow for the storage of data on the client-side, providing a more efficient and secure alternative to cookies. e.g: localStorage.setItem(), localStorage.getItem(), sessionStorage.setItem(), sessionStorage.getItem()
+            8. and more...
+    -->
+
+    <!-- preferred order -->
+    <header></header>
+    <main>
+        <aside></aside>
+        <section></section>
+    </main>
+    <footer></footer>
+
+    <!-- scripts are generally placed at the bottom of the body tag to ensure that the HTML content loads first -->
+    <script></script>
+</body>
+
+</html>
