@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Types of Lists:
+            1. Unordered List
+                - does not have a specific order
+                - items are usually marked with bullets (•)
+                - created using the <ul> tag and each item is defined with the <li> tag
+                - syntax:
+                    <ul>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                        <li>Item 3</li>
+                    </ul>
+                - types: disc (default), circle, square
+            2. Ordered List
+                - has a specific order
+                - items are usually marked with numbers (1., 2., 3.) or letters (a., b., c.)
+                - created using the <ol> tag and each item is defined with the <li> tag
+                - syntax:
+                    <ol>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                        <li>Item 3</li>
+                    </ol>
+                - types: decimal (default), lower-alpha, upper-alpha, lower-roman, upper-roman
+                - we can also specify the starting number or letter using the start attribute. e.g: <ol start="5"> will start the list from 5 instead of 1
+                - reversing the order of the list can be done using the reversed attribute. e.g: <ol reversed> will reverse the order of the list so that it starts from the last item and ends with the first item
+    -->
+    <ul type="square">
+        <li>
+            <h1>Heading1</h1>
+        </li>
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+    </ul>
+    <ul type="circle">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+    </ul>
+    <ul type="disc">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+    </ul>
+    <ul>
+        <li>List item
+            <ul>
+                <li>sub list item
+                    <ul>
+                        <li>sub sub list item
+                            <ul type="disc">
+                                <li>sub sub sub list item</li>
+                                <li>sub sub sub list item</li>
+                            </ul>
+                        </li>
+                        <li>sub sub list item</li>
+                    </ul>
+                </li>
+                <li>sub list item</li>
+                <li>sub list item</li>
+            </ul>
+        </li>
+        <li>item2</li>
+        <li>item3</li>
+    </ul>
+
+    <ol type="1">
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+    </ol>
+    <ol type="A" start="5">
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+    </ol>
+    <ol type="a" reversed>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+    </ol>
+    <ol type="i" start="3">
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+    </ol>
+    <ol type="I">
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+    </ol>
+</body>
+</html>
