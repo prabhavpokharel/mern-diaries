@@ -33,43 +33,110 @@
             autocomplete attribute is used to specify whether the browser should autocomplete the input field or not and it can take the following values:
             - on (default): the browser will autocomplete the input field based on the user's previous input
             - off: the browser will not autocomplete the input field
-
+            
             size attribute is used to specify the width of the input field in characters and it does not affect the amount of data that can be entered in the input field
             
             the difference between readonly and disabled is that readonly prevents the user from modifying the input but the value is still submitted with the form, while disabled prevents the user from modifying the input and the value is not submitted with the form
-        
+            
         -->
+        
+        <br><br>
+        <fieldset>
+            <legend>Personal Information</legend>
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="last_name" placeholder="Doe">
+    
+            <br><br>
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="18" max="99">
+            <!-- everything except minlength and maxlength can be used here with number types -->
+    
+            <br><br>
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob" value="2005-01-15" max="2005-01-25" min="2005-01-05">
+            <input type="datetime-local">
+            <input type="time">
+    
+            <br><br>
+            <label for="email">E-mail: </label>
+            <input type="email" id="email" name="email" placeholder="johndoe@abc.xyz">
+    
+            <br><br>
+            <label for="pwd">Password</label>
+            <input type="password" name="pass" id="pwd" placeholder="Enter secure password" minlength="8" maxlength="15">
+            <!-- eventhough it hides the typed characters but when submitted the password is revealed in the url -->
+        </fieldset>
 
         <br><br>
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="last_name" placeholder="Doe">
+        <fieldset disabled>
+            <!-- one benefit of using fieldset is that it allows you to group related form elements together and set attributes for the entire group like disable used here -->
+
+            <label for="salary">Salary</label>
+            <input type="range" id="salary" name="ss" min="1000" max="10000" step="1000" value="1000">
+    
+            <br><br>
+            <label for="">Hobbies</label>
+    
+            <input type="checkbox" name="hobby" id="hobby1" value="reading" checked>
+            <label for="hobby1">Reading Books</label>
+            <input type="checkbox" name="hobby" id="hobby2" value="travelling">
+            <label for="hobby2">Travelling</label>
+            <input type="checkbox" name="hobby" id="hobby3" value="games">
+            <label for="hobby3">Games</label>
+    
+            <br><br>
+            <label for="">Gender</label>
+    
+            <input type="radio" name="gender" id="m" value="male" checked>
+            <label for="m">Male</label>
+            <input type="radio" name="gender" id="f" value="female">
+            <label for="f">Female</label>
+            <input type="radio" name="gender" id="o" value="other">
+            <label for="o">Other</label>
+    
+            <br><br>
+            <label for="desc">About yourself</label>
+            <textarea name="description" id="desc" placeholder="Describe about yourself" rows="5"></textarea>
+
+
+            <legend>Extra Information</legend>
+        </fieldset>
+        
+        <br>
+        <label for="address" id="address">Address</label>
+        <select name="add" id="address" required>
+            <option value="" selected disabled>Choose your City</option>
+            <option value="bkt">Bhaktapur</option>
+            <option value="lpt">Lalipur</option>
+            <option value="bir">Birgunj</option>
+            <option value="ktm">Kathmandu</option>
+            <option value="pkr">Pokhara</option>
+        </select>
+        <!-- here disabled is kept in the select tag -->
 
         <br><br>
-        <label for="age">Age</label>
-        <input type="number" id="age" name="age" min="18" max="99">
-        <!-- everything except minlength and maxlength can be used here with number types -->
+        <input type="file" name="" id="" accept=".jpg .png .JPG .PNG">
+        <input type="search">
+        <input type="url">
+        <input type="color" name="color">
+
+        <input type="hidden" name="hidden" value="something">
+        <!-- values is being passed but not visible to the user -->
+
+        <input type="month">
+        <input type="tel">
+        <input type="week">
 
         <br><br>
-        <label for="dob">Date of Birth</label>
-        <input type="date" name="dob" id="dob" value="2005-01-15" max="2005-01-25" min="2005-01-05">
-        <input type="datetime-local">
-        <input type="time">
-
-        <br><br>
-        <label for="email">E-mail: </label>
-        <input type="email" id="email" name="email" placeholder="johndoe@abc.xyz">
-
-        <br><br>
-        <label for="pwd">Password</label>
-        <input type="password" name="pass" id="pwd" placeholder="Enter secure password" minlength="8" maxlength="15">
-        <!-- eventhough it hides the typed characters but when submitted the password is revealed in the url -->
-
-        <br><br>
-        <label for="salary">Salary</label>
-        <input type="range" id="salary" name="ss" min="1000" max="10000" step="1000" value="1000">
-
-        <br><br>
-        <button>Submit</button>
+        <input type="submit" value="OK">
+        <input type="reset" value="CLEAR">
+        <button>REGISTER</button>
+        <!-- input type "submit" and button Submit are both used to submit the form data -->
     </form>
+
+    <br><br>
+    <video src="./IMG_2766.MOV" height="450px" controls></video>
+    <audio src="" controls></audio>
 </body>
 </html>
