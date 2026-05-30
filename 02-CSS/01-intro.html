@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color: red;
+            text-align: center;
+            font-size: 45px;
+            font-family: Arial, Helvetica, sans-serif; /* here if first font is not available then it will try to use the second one and if that is also not available then it will use the third one */
+        }
+        .first{
+            color: blue;
+        }
+        .second{
+            text-decoration: underline;
+            color: red;
+        }
+        #myHeading{
+            color: green;
+        }
+        #myHeading[first]{
+            color: purple;
+        }
+        #myHeading[first="true"]{
+            color: brown;
+        }
+        .first{
+            text-align: right;
+        }
+    </style>
+    <link rel="stylesheet" href="./mystyle.css">
+</head>
+<body>
+    <!-- 
+    
+        some shortcuts for css in vscode:
+            .demo gives you a div class named demo
+            #demo gives you an div id named demo
+            p.demo gives you a p tag with a class named demo
+     
+        CSS Introduction:
+            - Cascading Style Sheets
+            - styling language
+            - to make webpages attractive, responsive, and user-friendly
+            - case sensitive not like HTML (case insensitive)
+            - syntax: selector { property: value; } where 
+                selector -> the HTML element you want to style
+                    selector types: 
+                        - element selector: selects all elements of a specific type (e.g., h1, p, div)
+                        - class selector: selects all elements with a specific class (e.g., .my-class)
+                        - id selector: selects a single element with a specific id (e.g., #my-id)
+                        - attribute selector: selects elements based on their attributes (e.g., input[type="text"])
+                        - pseudo-class selector: selects elements based on their state or position (e.g., a:hover, li:first-child)
+                        - universal selector: selects all elements (e.g., *)
+
+                        **the priority of selectors is id > class > element and if there are multiple selectors with the same priority then the last one will be applied**
+
+                        priority: id[attribute] > class[attribute] > id > class > element[attribute] > element
+                property -> the CSS property you want to change
+                value -> the value you want to assign to the property
+        
+        CSS Types:
+            1. Internal CSS: defined within a <style> tag in the head section of the HTML document. best for small projects or when you want to apply styles to a single page.
+            
+            2. External CSS: defined in a separate .css file and linked to the HTML document using a <link> tag. best for larger projects or when you want to apply styles to multiple pages.
+            
+            3. Inline CSS: defined directly within an HTML element using the style attribute. best for quick, one-off styles or when you want to override other styles for a specific element.
+
+            priority: inline > (internal and external, whichever is defined last)
+
+    -->
+
+    <h1 class="first second" style="font-size: 72px;">Hello World</h1>
+    <h1 id="myHeading">Good Afternoon</h1>
+
+    <h1 id="myHeading" first="true">Good Afternoon</h1> <!-- here first is attribute and we can also assign value to it like first="true" --> 
+    <h1 id="myHeading" first="false">Good Afternoon</h1>
+
+    <p class="first" id="myHeading">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem commodi architecto quas dicta facere minus quaerat quod deleniti omnis iusto! Minima iure hic optio exercitationem ducimus modi esse expedita autem!
+    </p>
+    <!-- the difference between class and id selectors is that class selectors can be applied to multiple elements, while id selectors are unique to a single element. using class is more flexible and reusable.  -->
+</body>
+</html>
