@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            height: 150vh;
+            width: 100%;
+            background-color: lavender;
+
+            display: flex;
+            /* using flex or flexbox will keep all the items in a row */
+            flex-wrap: wrap;
+            /* by default, flex items will not wrap and will stay in a single line. if we want the items to wrap to the next line when they exceed the container width, we can use the flex-wrap property with the value wrap. this will allow the items to wrap to the next line when necessary. */
+
+            /* flex-direction: row-reverse; */
+            /* other than row-reverse we can also use column and column-reverse */
+
+            gap: 10px;
+            /* gap is used to create space between the flex items. it can be used to create a gap between the rows and columns of the flex container. in this case, we are using it to create a gap of 10px between the flex items. */
+            justify-content: space-evenly;
+            /* justify-content is used to align the flex items along the main axis (horizontal axis in this case but we can use for vertical axis when set the flex direction). it can take several values such as start, flex-start, end, flex-end, center, space-between, space-around, and space-evenly. in this case, we are using it to center the flex items horizontally within the container. */
+            /* in space around, the space between the elements is double the space around the edges */
+
+            align-content: start;
+            /* align content is used to align the flex lines within the flex container when there are multiple lines of flex items. 
+            
+            it can take several values such as start, flex-start, end, flex-end, center, space-between, space-around, and space-evenly. in this case, we are using it to align the flex lines to the start of the container. */
+
+            align-items: center;
+            /* align items stretch will stretch the flex items to fill the container along the cross axis.
+            
+            other than stretch, we can also use start, flex-start, end, flex-end, center, baseline, and first baseline. using baseline, all the text will be aligned to the baseline of the tallest item. using first baseline, all the text will be aligned to the baseline of the first item.
+            */
+        }
+
+        .item {
+            height: 200px;
+            width: 200px;
+            background-color: aquamarine;
+        }
+
+        p {
+            width: 300px;
+            background-color: azure;
+
+            /* properties like flex-flow, flex-basis, flex-grow, flex-shrink are used to control the behavior of individual flex items within the flex container. */
+        }
+
+        a {
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <a href="#">Click Me!</a>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque minus commodi aspernatur odit quam enim
+            animi, unde quisquam atque, impedit ducimus porro. Nesciunt voluptate eos nemo! Delectus exercitationem
+            facere rerum!</p>
+        <input type="text">
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+    </div>
+</body>
+
+</html>
