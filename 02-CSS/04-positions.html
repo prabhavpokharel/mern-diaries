@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .static{
+            height: 200vh;
+            width: 75%;
+            margin: auto;
+            background-color: green;
+            position: static; /* this given or not it is the default value, the element is positioned according to the normal flow of the document. */
+        }
+        .relative{
+            height: 200px;
+            width: 75%;
+            margin: auto;
+            background-color: blue;
+            position: relative; 
+            top: 50px; /* moves the element 50px down from its normal position */
+            left: 50px;
+            right: 60px;
+            bottom: 10px; /* when given all four the only top and left will get the priority */
+        }
+        .absolute1, .absolute2{
+            height: 100px;
+            width: 100px;
+            background-color: purple;
+            position: absolute;
+            right: 50%;
+            top: 50%;
+        }
+        .absolute2{
+            background-color: brown;
+            left: 50px;
+            z-index: 100;
+        }
+        .fixed{
+            height: 70px;
+            width: 70px;
+            background-color: pink;
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            /* the bottom and right with fixed property makes the element stay in the same place even if the page is scrolled */
+        }
+        .sticky{
+            height: 50px;
+            width: 50%;
+            background-color: orange;
+            position: sticky; /* the disadvantage of using fixed here is that it covers or overrides other elements unlike sticky */
+            top: 0px;
+            bottom: 0px;
+            /* here top and bottom both can be used to control the sticky behavior */
+            z-index: 99; /* it is used to control the stacking order of elements, higher z-index means the element will be on top of elements with lower z-index. minus values can be used to place elements behind others always. */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 
+
+        Positioning in CSS allows you to control the layout and placement of elements on a web page. 
+        
+        There are several types of positioning:
+            1. static (default)
+            2. relative -> the element is positioned relative to its normal position. You can use top, right, bottom, and left properties to adjust its position.
+            3. absolute -> the element is positioned relative to its nearest positioned ancestor (not static). If there is no such ancestor, it will be positioned relative to the initial containing block (usually the viewport).
+            also, if position is static in ancestor then viewport will behave as its ancestor.
+            4. fixed -> the element is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. You can use top, right, bottom, and left properties to adjust its position.
+            5. sticky -> behaves sticky, gets fixed when it reaches a certain scroll position. You can use top, right, bottom, and left properties to adjust its position when it becomes sticky. mostly used for headers and navigation bars that should remain visible as the user scrolls down the page.
+
+    -->
+    
+    <div class="sticky"></div>
+    <div class="static">
+        <div class="absolute2"></div> <!-- it will use viewport as its ancestor because its parent has static position -->
+    </div>
+    <div class="relative">
+        
+        <div class="absolute2"></div> <!-- it will use its parent (relative) as its ancestor -->
+        
+        <div class="absolute1">
+            <div class="fixed"></div>
+        </div>
+        
+    </div> <!-- any name can be given it does not have to be static or relative -->
+    <div class="static"></div>
+    <div class="absolute1"></div> <!-- it will also use viewport cause it has no positioned ancestor -->
+</body>
+</html>
