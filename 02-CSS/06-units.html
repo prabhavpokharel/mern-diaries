@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        /* body{
+            font-size: 20px;
+        } */
+        :root{
+            font-size: 20px;
+        }
+        /* here using body and :root is two different ways to set the font size for the entire document. the difference is that :root sets the font size for the entire document, while body only sets it for the body element */
+        .demo1{
+            font-size: 2em;
+
+        }
+        .demo{
+            height: 300px;
+            width: 100%;
+            /* 100vw is same as 100% of the viewport width and same for vh which is used for height. still we can use vw in height, like if we keep 100vw in height then it will take the full width of the viewport */
+            background-color: blue;
+            font-size: 1rem;
+        }
+        .ref{
+            /* font-size: 16px; */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 
+    
+        Units in CSS are used to specify the size of elements, spacing, and other properties. There are several types of units in CSS, including:
+
+        1. Absolute Units: These units are fixed and do not change based on the context. Examples include:
+           - px (pixels): A pixel is a unit of measurement that represents a single dot on the screen. It is commonly used for defining font sizes, margins, and padding.
+           - pt (points): A point is a unit of measurement that is equal to 1/72 of an inch. It is often used in print media.
+           - cm (centimeters): A centimeter is a unit of measurement that is equal to 10 millimeters. It is often used for print media.
+           - mm (millimeters): A millimeter is a unit of measurement that is equal to 1/10th of a centimeter. It is also used for print media.
+           - in (inches): An inch is a unit of measurement that is equal to 2.54 centimeters. It is commonly used in print media and for defining the size of elements on screens.
+
+        2. Relative Units: These units are relative to the parent element or the viewport. Examples include:
+           - % (percentage): A percentage is a unit of measurement that is relative to the parent element. For example, if you set the width of an element to 50%, it will take up half of the width of its parent element.
+           - em: An em is a unit of measurement that is relative to the font size of the parent element. For example, if the font size of the parent element is 16px, then 1em would be equal to 16px.
+           - rem: A rem is a unit of measurement that is relative to the font size of the root element (usually the <html> element). For example, if the font size of the root element is 16px, then 1rem would be equal to 16px.
+           - vw (viewport width): A vw is a unit of measurement that is relative to the width of the viewport. For example, if you set the width of an element to 50vw, it will take up half of the width of the viewport.
+           - vh (viewport height): A vh is a unit of measurement that is relative to the height of the viewport. For example, if you set the height of an element to 50vh, it will take up half of the height of the viewport.
+           - fr (fractional unit): A fr is a unit of measurement that is used in CSS Grid Layout to define the size of grid tracks. It represents a fraction of the available space in the grid container. For example, if you have a grid container with three columns and you set the width of each column to 1fr, they will each take up an equal portion of the available space in the container.
+
+    -->
+
+    <div class="ref">Hello</div>
+    <div class="demo1">
+        Hello
+        <div class="demo1">
+            Hello
+            <div class="demo1">Hello (em)</div>
+        </div>
+    </div>
+    <div class="demo">Hello (rem)</div>
+</body>
+</html>
