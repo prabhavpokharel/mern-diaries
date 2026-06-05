@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            transition: all 2s; 
+            /* transition property is used to specify the duration and timing of the transformation. it can be set to all to apply the transformation to all properties, or it can be set to specific properties like transform, background-color, etc. the duration is specified in seconds or milliseconds. */
+
+            /* transition: border-radius 2s, background-color 1s; */
+        }
+        .demo{
+            height: 300px;
+            width: 300px;
+            background-color: blue;
+            color: yellow;
+
+            animation-name: animation2; /* animation-name is used to specify the name of the animation that we want to apply to the element. it should match the name of the keyframes that we have defined. */
+            animation-duration: 3s;
+            animation-iteration-count: 3; /* animation-iteration-count is used to specify the number of times the animation should be played. it can be set to a specific number or it can be set to infinite to play the animation indefinitely. */
+            animation-fill-mode: forwards; /* animation-fill-mode is used to specify how the element should be styled after the animation has completed. it can be set to forwards to keep the final state of the animation, backwards to keep the initial state of the animation, or both to keep both states. */
+            animation-direction: reverse; /* animation-direction is used to specify the direction of the animation. it can be set to normal to play the animation in the normal direction, reverse to play the animation in the reverse direction, alternate to play the animation in alternate directions, or alternate-reverse to play the animation in alternate reverse directions. default is normal. */
+            animation-delay: 1s; /* animation-delay is used to specify the delay before the animation starts. it can be specified in seconds or milliseconds. */
+            animation-timing-function: ease-in-out; /* animation-timing-function is used to specify the timing function of the animation. it can be set to linear to have a constant speed, ease to have a slow start and end with a fast middle, ease-in to have a slow start, ease-out to have a slow end, or cubic-bezier to specify a custom timing function using cubic Bezier curves. */
+        }
+        .demo:hover{
+            /* background-color: red;
+            border-radius: 50%;
+            height: 500px; */
+
+            /* transform: translate(300px, 300px);
+            transform: translateX(300px);
+            transform: translateY(300px); */
+
+            /* transform: rotate(90deg);  */
+            /* rotates CW, keeping minus (-) sign rotates CCW */
+            /* transform: rotateX(130deg);  */
+            /* rotates around the x-axis, giving a 3D effect */
+            /* transform: rotateY(130deg);  */
+            /* rotates around the y-axis, giving a 3D effect */
+
+            /* transform: scale(2); */
+            /* scales up the element by a factor of 2 */
+            /* transform: scale(0.5); */
+            /* scales down the element by a factor of 0.5 */
+            /* transform: scale(0); */
+            /* makes the element invisible */
+            /* transform: scale(-1); */
+            /* flips the element horizontally */
+
+            /* transform: skew(30deg, 60deg); */
+            /* note: don't give the sum of the angles to be 90deg */
+            /* transform: skewX(60deg);
+            transform: skewY(30deg); */
+
+            /* transform: rotateX(60deg) rotateY(30deg) scale(0.7) translate(50px, 50px); */
+
+            /* if we use height and width instead of transform then it will push down the elements beneath it but using transform it will not affect the layout and override the elements */
+
+            animation-play-state: paused; /* animation-play-state is used to specify whether the animation is running or paused. it can be set to running to play the animation, or paused to pause the animation. default is running. */
+        }
+        @keyframes animation1{
+            /* keyframe animation is a way to create smooth transitions between different styles of an element over a specified duration. here keyframes mean specific points in the animation sequence and animation1 is the name of the animation */
+
+            from{
+                background-color: red;
+            }
+            to{
+                background-color: green;
+                transform: rotateX(75deg) rotateY(30deg);
+            }
+        }
+        @keyframes animation2{
+            0%{
+                background-color: yellow;
+            }
+            25%{
+                background-color: red;
+            }
+            50%{
+                background-color: purple;
+            }
+            75%{
+                background-color: crimson;
+            }
+            100%{
+                background-color: brown;
+            }
+            /* the percentages used signify the time progress of the animation */
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    
+        CSS transformations are used to change the appearance of an element without affecting its layout. it can be used to rotate, scale, skew, or translate an element.
+
+        types of transformations:
+            1. translation: it is used to move an element from one position to another. 
+            syntax: transform: translate(x, y); where x is the horizontal distance and y is the vertical distance. it can be in pixels or percentage.
+            2. rotation: it is used to rotate an element around a fixed point.
+            syntax: transform: rotate(angle); where angle is the degree of rotation. it can be in degrees or radians.
+            3. scaling: it is used to change the size of an element.
+            syntax: transform: scale(x, y); where x is the horizontal scaling factor and y is the vertical scaling factor. it can be in pixels or percentage. 
+            if:
+                - x > 1 and y > 1, the element will be scaled up.
+                - x < 1 and y < 1, the element will be scaled down.
+                - x = 1 and y = 1, the element will not be scaled.
+            4. skewing: it is used to distort an element along the x-axis or y-axis.
+            syntax: transform: skew(x-angle, y-angle); where x-angle is the angle of skewing along the x-axis and y-angle is the angle of skewing along the y-axis. it can be in degrees or radians.
+
+    -->
+
+    <div class="demo">
+        🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎 HELLO
+    </div>
+</body>
+</html>
