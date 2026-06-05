@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* these are the four pseudoclasses for links. it should be in the order: link, visited, hover, active because when altered, they will be applied in that order and give unexpected results */
+        a:link{
+            color: red;
+        }
+        a:visited{
+            color: green;
+        }
+        a:hover{
+            color: blue;
+        }
+        a:active{
+            color: orange;
+        }
+
+        span:hover, p:hover{
+            background-color: yellow;
+        }
+        span:active, p:active{
+            background-color: gray;
+        }
+
+        input:focus{
+            background-color: whitesmoke;
+        }
+        input[type='checkbox']:checked+label{
+            font-weight: bold;
+        }
+        li:first-child{
+            background-color: green;
+        }
+        li:last-child{
+            background-color: brown;
+        }
+        li:nth-child(even){
+            background-color: aquamarine;
+        }
+        li:nth-child(odd){
+            background-color: lightcoral;
+        }
+        li:hover{
+            cursor: pointer; /* cursor property is used to change the cursor when hovering over an element. it can be set to pointer to indicate that the element is clickable */
+            background-color: gray;
+        }
+
+        /* pseudoelements are used to style specific parts of an element. double colons (::) are used. */
+        p::first-letter{
+            font-size: 48px;
+            font-weight: bold;
+        }
+        p::first-line{
+            text-transform: uppercase;
+        }
+        p::selection{
+            background-color: brown;
+            color: white;
+        }
+        p::before, p::after{
+            display: block;
+            content: "";
+            background-color: brown;
+            width: 100%;
+            height: 5px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+    </ul>
+
+    <input type="checkbox">
+    <label for="">Option</label>
+
+    <input type="text">
+
+    <a href="#one">Click Here</a>
+    <a href="#two">Click me</a>
+    <!-- on default, the link color is blue, when hovered over, it changes to a slightly darker blue and on clicking it changes to red but finally the visited link will be purple. this can be changed/altered using pseudoclasses -->
+
+    <span>Hello</span>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae molestias obcaecati voluptatum voluptatibus aliquam eius saepe dolore accusantium nulla laboriosam vero itaque iusto maxime officia architecto dolorum qui, dolor tenetur.</p>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo, p, #one{
+            color: blue;
+        }
+        .demo h1{
+            color: red;
+        }
+        .demo>h1{
+            text-decoration: underline;
+        }
+        /* .demo>*{
+            text-decoration: underline;
+        } */
+        .demo~h1{
+            text-transform: uppercase;
+        }
+        .demo+h1{
+            font-style: italic;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    
+        Combinators are used to select elements based on their relationship with other elements in the document. it can be used instead of classes and ids to select elements based on their position in the document. 
+
+        four types of combinators:
+            1. Grouping combinator: it is used to group multiple selectors together. 
+            the syntax is selector1, selector2, selector3 { /* styles */ }
+            2. Descendant combinator: it is used to select elements that are descendants of a specified element. 
+            the syntax is selector1 selector2 { /* styles */ } where selector1 is the ancestor and selector2 is the descendant.
+            3. Child combinator: it is used to select elements that are direct children of a specified element.
+            the syntax is selector1 > selector2 { /* styles */ } where selector1 is the parent and selector2 is the child.
+            4. General sibling combinator: it is used to select elements that are siblings of a specified element.
+            the syntax is selector1 ~ selector2 { /* styles */ } where selector1 is the first sibling and selector2 is the general sibling.
+            5. Adjacent sibling combinator: it is used to select elements that are immediately following siblings of a specified element.
+            the syntax is selector1 + selector2 { /* styles */ } where selector1 is the first sibling and selector2 is the adjacent sibling.
+    
+    -->
+
+    <h1>NOt a sibling as it is in front not afterwards</h1>
+    <div class="demo">
+        <h1>Descendant, child</h1>
+        <p>descendant, child</p>
+        <div>
+            <h1>Descendant</h1>
+            <div>
+                <h1>Descendant</h1>
+                <div>
+                    <h1>Descendant</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Not a descenant, sibling</h1> <!-- to be adjacent sibling, it should be immediately following the .demo element and not be any thing in between them --> 
+    <br>
+    <h1>Not a descenant, sibling</h1>
+    <h1>Not a descenant, sibling</h1>
+    <h1>Not a descenant, sibling</h1>
+    <h1>Not a descenant, sibling</h1>
+    <h1>Not a descenant, sibling</h1>
+    <p>Not a descendant, sibling</p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quasi reiciendis, iusto iste, mollitia molestiae consequuntur temporibus ducimus laudantium quos inventore neque cum saepe animi veniam aliquid similique, quod qui!
+    </p>
+    <a href="#" id="one">Click me</a>
+</body>
+</html>
