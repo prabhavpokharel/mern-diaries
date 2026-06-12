@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo{
+            height: 300px;
+            width: 300px;
+            background-color: blue;
+        }
+
+        /* @media query is used to apply styles based on the characteristics of the device. space is given between every word while writing the query. here, max-width means the maximum width of the screen. */
+        @media screen and (max-width: 600px) {
+            .demo{
+                background-color: red;
+                /* so when the screen width is less than or equal to 600px, the background color will be red */
+                height: 500px;
+                width: 200px;
+            }
+        }
+
+        /* NOTE: don't make space between these two else nothing will appear on the screen. currently its 600px and 600px so the styles for 600px and above will be applied. */
+
+        /* here, when the screen width is greater than or equal to 600px, the following styles will be applied */
+        @media screen and (min-width: 600px) {
+            .demo{
+                background-color: blue;
+            } 
+        }
+        @media screen and (min-width: 900px) {
+            .demo{
+                background-color: green;
+            }            
+        }
+        @media screen and (min-width: 1400px) {
+            .demo{
+                background-color: purple;
+            }
+        }
+
+        /* NOTE: you should write media queries in ascending order of screen width else the styles may not appear as expected. also sometimes called as mobile-first approach. */
+
+        /* Desktop-approach */
+        @media screen and (min-width: 1200px) {
+            .demo{
+                background-color: red;
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            .demo{
+                background-color: blue;
+            }
+        }
+        @media screen and (max-width: 900px) {
+            .demo{
+                background-color: green;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .demo{
+                background-color: purple;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo"></div>
+</body>
+</html>
