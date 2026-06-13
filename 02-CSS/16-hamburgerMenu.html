@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+            transition: 0.5s;
+        }
+        header{
+            background-color: bisque;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 100px;
+        }
+        .logo{
+            width: 25%;
+            font-size: 40px;
+        }
+        .menu{
+            width: 40%;
+            display: flex;
+            justify-content: space-between;
+
+            list-style: none;
+            padding: 0;
+        }
+        .hmenu{
+            display: none;
+        }
+        .hmenu_items{
+            /* display: none; */
+            /* visibility: hidden; */
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: chocolate;
+            list-style-type: none;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+
+            transform: translateX(-100%);
+        }
+        .hmenu_items li{
+            list-style-type: none;
+            padding: 10px 20px;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .hmenu{
+                display: block;
+            }
+            .menu{
+                display: none;
+            }
+        }
+        .hmenu:hover>.hmenu_items{
+            display: block;
+            transform: translateX(0);
+        }
+        </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">LOGO</div>
+        <ul class="menu">
+            <li>HOME</li>
+            <li>ABOUT</li>
+            <li>SERVICES</li>
+            <li>BLOGS</li>
+            <li>CONTACT</li>
+        </ul>
+        <span class="hmenu">
+            <button>MENU</button>
+            <section class="hmenu_items">
+                <h1 class="logo">LOGO</h1>
+                <ul>
+                    <li>HOME</li>
+                    <li>ABOUT</li>
+                    <li>SERVICES</li>
+                    <li>BLOGS</li>
+                    <li>CONTACT</li>
+                </ul>
+            </section>
+        </span>
+    </header>
+</body>
+
+</html>
