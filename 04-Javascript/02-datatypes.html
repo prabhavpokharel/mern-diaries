@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // Datatypes:
+        //  1. Number: it is used to represent numeric values. it can be an integer or a floating-point number. eg: 0 to 9, -1, 3.14, e, etc.
+        //  2. String: it is used to represent a sequence of characters. it is enclosed in single quotes, double quotes, or backticks. eg: 'Hello', "World", `Hello World`, etc.
+        //  3. Boolean: it is used to represent a logical value. it can be either true or false. eg: true, false.
+        //  4. Undefined: it is used to represent a variable that has not been assigned a value. eg: let a; console.log(a); // undefined
+        // 5. Object: it is used to represent a collection of key-value pairs. it can be created using object literals or constructor functions. eg: let obj = { name: 'John', age: 30 }; console.log(obj.name); // John, null, date, array, js objects, etc.
+
+        let a = 5
+        const PI =3.14
+        var x = 9
+
+        // let vs var vs const
+        // let, var: variable (value can be changed)
+        // const: constant (value cannot be changed)
+
+        document.write('"A" = ', a)
+        document.write("<br>PI = ", PI)
+        document.write("<br>X = ", x)
+        
+        a = "Hello World"
+        document.write("<br>After changing the value of a: ", a)
+        x = "Hey"
+        document.write("<br>After changing the value of x: ", x)
+        // The thrown error can be seen in the console of the browser as const variables cannot be reassigned a new value.
+        
+        // let, var: cannot be redeclared in the same scope but can be redeclared in different scopes
+        // const: cannot be redeclared in the same scope and cannot be redeclared in different scopes
+        var x = 'something'
+        document.write("<br>After redeclaring x: ", x)
+
+        // let, const: lifetime is block scope (only accessible within the block it is declared in)
+        // var: lifetime is global scope (accessible throughout the entire program)
+        {
+            let a = "Block Scope"
+            document.write("<br>Inside block: A = ", a)
+            const PI = 3.14159
+            document.write("<br>Inside block: PI = ", PI)
+            var x = "Block Scope of X"
+            document.write("<br>Inside block: X = ", x)
+        }
+        {
+            let a = "Hi there"
+            document.write("<br>Inside block: A = ", a)
+            const PI = 3.1
+            document.write("<br>Inside block: PI = ", PI)
+
+        }
+        document.write("<br>Outside block: A = ", a)
+        document.write("<br>Outside block: PI = ", PI)
+        document.write("<br>Outside block: X = ", x)
+
+        document.write('"A" = ', a["name"])
+        document.write("<br>type of a is ", typeof (a))
+    </script>
+</body>
+</html>
