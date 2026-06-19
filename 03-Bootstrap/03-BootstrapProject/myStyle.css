@@ -4,3 +4,10 @@
 .card img{
     height: 200px;
 }
+textarea{
+    resize: none; /* This is used to disable the resize option of textarea. */
+    height: 200px !important; /* !important is used to override the default height of textarea which is 150px. */
+}
+.table img{
+    height: 100px;
+} /* this is bootstrap's class */

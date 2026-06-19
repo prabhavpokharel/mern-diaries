@@ -87,6 +87,109 @@
     <!-- Header END -->
 
     <!-- Main Content START -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-11 col-sm-10 col-md-8 col-lg-6 mx-auto shadow-lg mt-5 p-4 p-md-5 rounded-4">
+                <main class="form-signin w-100 m-auto">
+                    <form>
+                        <img class="mb-4" src="https://gallery.yopriceville.com/downloadfullsize/send/28045" alt="" width="72" height="57">
+                        <h1 class="h3 mb-3 fw-normal">Sign Up Now</h1>
+
+                        <!-- 
+                        
+                        if we don't write form-floating then the input and text will be separated. 
+                         
+                        NOTE: if we don't give placeholder then the label will be displayed on top of the input field. and if we give placeholder then the label will be displayed inside the input field.
+
+                        -->
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="fname" placeholder="">
+                            <!-- similarly if we don't write form-control then the input and text will be overlapping. even the order matters because the placeholder will be displayed on top of the label -->
+                            <label for="fname">First Name</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="dob">
+                            <label for="dob">Date of Birth</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="number" class="form-control" id="age">
+                            <label for="age">Age</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <!-- if we use form-select instead of form-control then for the dropdown we will see the dropdown arrow -->
+                            <select name="address" id="add" class="form-select">
+                                <option value="">Choose your city</option>
+                                <option value="ktm">Kathmandu</option>
+                                <option value="bkt">Bhaktapur</option>
+                                <option value="lal">Lalitpur</option>
+                            </select>
+                            <label for="add">Address</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <div class="form-control" d-flex justify-content-evenly>
+                                <div class="form-check">
+                                    <input type="radio" value="m" id="m" name="gender" class="form-check-input">
+                                    <label for="" class="form-check-label">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" value="f" id="f" name="gender" class="form-check-input">
+                                    <label for="f" class="form-check-label">Female</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" value="o" id="o" name="gender" class="form-check-input">
+                                    <label for="o" class="form-check-label">Others</label>
+                                </div>
+                            </div>
+                            <label for="">Gender</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea name="desc" id="desc" class="form-control" placeholder=""></textarea>
+                            <label for="desc">About Yourself</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="file" class="form-control" id="pic">
+                            <label for="pic">Photo</label>
+                        </div>
+
+                        <div class="form">
+                            <div class="input-group mb-3">
+                                <label for="inputGroupFile01" class="input-group-text">Upload</label>
+                                <input type="file" class="form-control" id="inputGroupFile01">
+                            </div>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> I accept the terms and conditions.
+                            </label>
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+
+                        <!-- <div class="d-sm-flex justify-content-between"> -->
+                            <div>Already have an account? <a href="./login.html">Sign in</a></div>
+                        <!-- </div> -->
+
+                        <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </div>
     <!-- Main Content END -->
 
     <!-- Footer START -->
