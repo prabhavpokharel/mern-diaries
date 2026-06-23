@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    
+        Conditional Statements: 
+        1. if statement: it is used to execute a block of code if a specified condition is true. 
+        2. else if statement: it is used to specify a new condition to test, if the first condition is false.
+        3. else statement: it is used to execute a block of code if all the conditions are false.
+        Syntax:
+            if(condition){
+                // code to be executed if the condition is true
+            }
+            else if(condition){
+                // code to be executed if the condition is true
+            }
+            else{
+                // code to be executed if all the conditions are false
+            }
+
+     -->
+    
+     <script>
+        let a = Number(prompt("Enter a number: "))
+        if(a < 0) {
+            document.write("The number is negative.")
+        }
+        else if(a > 0) {
+            document.write("The number is positive.")
+        }
+        else{
+            document.write("The number is ZEROooo!")
+        }
+
+        // WAP to find out if a given number is odd or even
+        let num = Number(prompt("Enter a number: "))
+        if(num % 2 == 0){
+            document.write("The given number is even")
+        }
+        else{
+            document.write("The given number is odd")
+        }
+
+        // WAP to input a year and check if it is a leap year or not
+        // 2000, 2004, 2008, ... (addition of 4 years)
+        // exceptions -> 1900, 1800, 1700, 1500, 1400, 1300 (addition of 100 years due to additions of 4 years)
+        let y = Number(prompt("Enter a number: "))
+        if(y % 4 == 0 && y % 100 != 0 || y % 400 == 0){ // This will take longer time as it is all in one conditions
+            document.write("The given year is leap year.")
+        }
+        else{
+            document.write("The given year is not a leap year.")
+        }
+
+        // WAP to input 3 sides of a triangle, and check if it a valid triangle or not.
+        // Also check if it is equilateral, isoceles or scalene traiagnle if valid.
+        let s1 = Number(prompt("Enter the first side of the triangle: "))
+        let s2 = Number(prompt("Enter the second side of the triangle: "))  
+        let s3 = Number(prompt("Enter the third side of the triangle: "))
+        if(s1 + s2 > s3 && s2 + s3 > s1 && s3 + s1 > s2){
+            document.write("The given sides form a valid triangle.")
+            if(s1 == s2 && s2 == s3){
+                document.write("<br>The triangle is equilateral.")
+            }
+            else if(s1 == s2 || s2 == s3 || s3 == s1){
+                document.write("<br>The triangle is isoceles.")
+            }
+            else{
+                document.write("<br>The triangle is scalene.")
+            }
+        }
+        else{
+            document.write("The given sides do not form a valid triangle.")
+        }
+
+        // WAP to input marks of a student in 5 subjects. Check if he is pass or fail. Calculate total and percentage and his grade.
+        // 90+ = A+
+        // 80 to 90 = A
+        // 70 to 80 = B+
+        // 60 to 70 = B
+        // 50 to 60 = C
+        // 40 to 50 = D
+        // Otherwise -> NQ
+        let sub1 = Number(prompt("Enter the marks in Subject 1: "))
+        let sub2 = Number(prompt("Enter the marks in Subject 2: "))
+        let sub3 = Number(prompt("Enter the marks in Subject 3: "))
+        let sub4 = Number(prompt("Enter the marks in Subject 4: "))
+        let sub5 = Number(prompt("Enter the marks in Subject 5: "))
+
+        total = sub1 + sub2 + sub3 + sub4 + sub5
+
+        if(total <= 0) {
+            document.write("The student has FAILED!")
+        }
+        else {
+            if(total >= 90) {
+                document.write("The student has scored A+")
+            }
+            else if(total >= 80 && total < 90) {
+                document.write("The student has scored A")
+            }
+            else if(total >= 70 && total < 80) {
+                document.write("The student has scored B+")
+            }
+            else if(total >= 60 && total < 70) {
+                document.write("The student has scored B")
+            }
+            else if(total >= 50 && total < 60) {
+                document.write("The student has scored C")
+            }
+            else if(total >= 40 && total < 50) {
+                document.write("The student has scored D")
+            }
+            else {
+                document.write("The student has got NQ!")
+            }
+        }
+
+        // WAP to input 3 numbers and check which one is greater among them.
+        let n1 = Number(prompt("Enter the first number: "))
+        let n2 = Number(prompt("Enter the second number: "))
+        let n3 = Number(prompt("Enter the third number: "))
+
+        if(n1 > n2 && n1 > n3){
+            document.write("The first number is the greatest.")
+        }
+        else if(n2 > n1 && n2 > n3){
+            document.write("The second number is the greatest.")
+        }
+        else{
+            document.write("The third number is the greatest.")
+        }
+
+        // WAP to input a number (1 to 7) and display corresponding day. 1 for Sunday, 2 for Monday and so on.
+        let day = Number(prompt("Enter a number (1 to 7): "))
+        if(day == 1){
+            document.write("The day is Sunday.")
+        }
+        else if(day == 2){
+            document.write("The day is Monday.")
+        }
+        else if(day == 3){
+            document.write("The day is Tuesday.")
+        }
+        else if(day == 4){
+            document.write("The day is Wednesday.")
+        }
+        else if(day == 5){
+            document.write("The day is Thursday.")
+        }
+        else if(day == 6){
+            document.write("The day is Friday.")
+        }
+        else if(day == 7){
+            document.write("The day is Saturday.")
+        }
+        else{
+            document.write("Invalid input! Please enter a number between 1 and 7.")
+        }
+     </script>
+</body>
+</html>
