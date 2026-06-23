@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HELLO</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quidem nam accusamus modi mollitia ad! Beatae minus, itaque molestias veritatis earum nostrum voluptatibus in! Expedita ipsam praesentium exercitationem provident! Cumque hic nihil dolor asperiores aliquam possimus maiores nam nostrum, dolorem unde, necessitatibus ut quod impedit temporibus incidunt rem! Recusandae veritatis enim quidem blanditiis alias dolor est, omnis tenetur fugit culpa, incidunt pariatur suscipit perspiciatis unde. Quod laudantium velit earum. Esse, eligendi. Officiis alias molestiae laborum porro consequuntur exercitationem quaerat aperiam? Harum molestias impedit aut qui possimus, labore modi dignissimos quisquam distinctio consectetur? Nisi totam impedit et quo quas tempora quaerat consectetur omnis similique, asperiores eius nostrum eligendi temporibus corrupti corporis laborum aperiam, saepe natus quibusdam animi! Eius vero quis autem molestiae itaque odio. Neque est cupiditate odit quisquam vero explicabo doloremque incidunt corporis sunt dignissimos reprehenderit officia voluptatibus, commodi libero qui ipsam praesentium itaque dolores ipsum maiores. Qui totam, eveniet culpa tempora voluptas, illo impedit provident nemo explicabo, ad quo! Eveniet odit aspernatur sed, dolorum suscipit libero similique, repellat atque quo quis labore, tenetur deleniti molestias rem totam quaerat! Iure fugiat fuga repellendus nostrum excepturi at, consectetur odio eum illo blanditiis distinctio, impedit sapiente ratione in! Asperiores amet corrupti libero.
+    </p>
+    <button onclick="writenow()">Click here to override the HTML content with function</button>
+
+    <h1 id="myHeadingID"></h1>
+
+    <input type="text" id="inp">
+    <button onclick="write_now()">Submit</button>
+
+    <!-- 
+    
+        Outputs in JS:
+            1. console -> used for testing and debugging purposes.
+                syntax: console.log("Hello World")
+            2. document -> used to display something on the webpage. we don't use it everytime as it overrides the whole HTML content of the webpage but instead we use getElementById() to display something on the webpage.
+                syntax: document.write("Hello World")
+            3. window -> used to display something on the webpage in a pop-up window.
+                syntax: window.alert("Hello World")     
+    
+    -->
+    
+    <script>
+        console.log("Hello World!") // console.log is used to print something in the console which is present in the browser.
+
+        document.write("<br><b>Hello World<b><br>")
+
+        function writenow(){
+            document.write("<br><u>Hello World<u><br>")
+        }
+
+        // document.getElementById('myHeadingID').innerText = 'GOOD AFTERNOON'
+        document.getElementById('myHeadingID').innerHTML = '<u>GOOD AFTERNOON</u>'
+        // the difference between innerText and innerHTML is that innerText will only display the text but innerHTML will display the text along with the HTML tags applied to it.
+
+        window.alert("This is an alert!")
+        // Alternative Syntax: alert("This is an alert!")
+
+        // window.print() 
+        // this will open the print window of the browser to print the webpage.
+
+        // let name = prompt("Enter your name") 
+        // this will open a prompt window of the browser to take input from the user. the value entered by the user will be stored in the variable 'name'.
+        // document.getElementById('myHeadingID').innerText = name
+
+        // let result = confirm("Are you sure?") 
+        // this will open a confirm window of the browser with two options "OK" and "Cancel". if the user clicks on "OK" then the value of result will be true and if the user clicks on "Cancel" then the value of result will be false.
+        // document.write("<br>Result: ", result)
+
+        function write_now() {
+            // document.getElementById('myHeadingID').innerHTML = document.getElementById('inp').value
+
+            document.getElementById('myHeadingID').innerHTML = new Date
+        }
+    </script>
+    <script src="./myScript.js"></script>
+</body>
+</html>
