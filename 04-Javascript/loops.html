@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Loops used to perform a block of code repeatedly until a specified condition is met. Loops require four main components:
+            1. Initialization: when to start
+            2. Condition: when to stop
+            3. Code to be executed: what to repeat
+            4. Next: how to proceed to the next iteration 
+
+        1. while Syntax:
+            initialization
+            while(condition){
+                // code to be executed
+                next
+            }
+        
+        2. do while Syntax:
+            initialization
+            do{
+                // code to be executed
+                next
+            }while(condition)
+
+        3. for Syntax:
+            for(initialization; condition-check; next){
+                // code to be executed
+            }
+
+    -->
+
+    <script>
+        // Display good afternoon 20 times using while loop
+        let i = 1
+        while(i <= 20){
+            document.write("Good Afternoon! <br>")
+            i++
+        }
+
+        i = 100
+        do{
+            document.write("HELLO WORLD<br>")
+            i++
+        } while(i <= 20)
+
+        for (i = 1; i <= 20; i++) {
+            document.write("Hi there<br>")            
+        }
+
+        document.write("<br><br>")
+
+        // WAP to display natural numbers from 1 to 100
+        i = 1
+        while(i <= 100){
+            document.write(i, " ")
+            i++
+        }
+
+        document.write("<br>")
+
+        i = 1
+        do{
+            document.write(i, " ")
+            i++
+        } while(i<=100)
+
+        document.write("<br><br>")
+
+        // WAP to display even numbers from 2 to 100
+        i = 2
+        while(i <= 100){
+            document.write(i, " ")
+            i += 2
+        }
+        
+        document.write("<br>")
+
+        i = 2
+        do{
+            document.write(i, " ")
+            i += 2
+        } while(i<=100)
+
+        document.write("<br><br>")
+
+        // WAP to display 20 terms of a series 1 4 7 10 13 16 ...
+        i = 1
+        let a = 1
+        while(i <= 20){
+            document.write(a, " ")
+            a += 3
+            i++
+        }
+        
+        document.write("<br>")
+
+        i = 1
+        a = 1
+        do{
+            document.write(a, " ")
+            a += 3
+            i++
+        } while(i <= 20)
+
+        document.write("<br><br>")
+
+        // WAP to display multiplication table of a number
+        let num = prompt("Enter a number: ")
+        i = 1
+        while(i <= 10){
+            document.write(num, " x ", i, " = ", num * i, "<br>")
+            i++
+        }
+
+        let choice = true
+        let count = 0
+        do{
+            count++
+            choice = confirm("Do you want to increase count?")
+        }while(count == true)
+        document.write("<br>Count = ", count)
+
+        choice = true
+        count = 0
+        while(choice){
+            count++
+            choice = confirm("Do you want to increase the count?")
+        }
+        document.write("<br>Count = ", count)
+
+        // WAP to reverse a given number: 12345 -> 54321, 123 -> 321
+        // HINT: 12345 -> rem = 5, num = 1234 use (Math.truc(num/10)) else when dividing you'll get decimals
+        num = 12345
+        document.write("<br>Before: ", num)
+        let rev = 0
+        let rem = 1
+        while(num > 0){
+            rem = num % 10
+            rev = rev*10 + rem
+            num = Math.trunc(num/10)
+        }
+        document.write("<br>After: ", rev)
+
+        // WAP to convert binary to decimal
+        // WAP to convert decimal to binary
+
+        // WAP to check if a given number is prime or not
+
+    </script>
+</body>
+</html>
