@@ -6,12 +6,42 @@
     <title>Document</title>
 </head>
 <body>
+    <!--
+        
+    Operators:
+        1. Arithmetic operators: it is used to perform arithmetic operations on numbers.
+        eg: +, -, *, /, %, ++, --, **, etc.
+
+        2. Assignment operators: it is used to assign values to variables.
+        eg: =, +=, -=, *=, /=, %=, **=, etc.
+
+        3. Comparison operators: it is used to compare two values and return a boolean value.
+        eg: ==, ===, !=, !==, >, <, >=, <=, etc.
+
+        4. Increment and Decrement operators: it is used to increment or decrement the value of a variable by 1.
+        eg: ++, --, etc.
+
+            ++ Increment
+                Post / Pre: a++ / ++a
+
+            -- Decrement
+                Post / Pre: a-- / --a
+
+        5. Ternary/Conditional operator: it is used to evaluate a condition and return a value based on the condition.
+        syntax: condition ? value_if_true : value_if_false
+
+        6. Logical Operators: it is used to perform logical operations on boolean values.
+        eg: &&, ||, !, etc.
+
+        7. Bitwise Operators: it is used to perform bitwise operations on integers.
+        eg: &, |, ^, ~, <<, >>, >>>, etc.
+
+        8. Concatenation operator: it is used to concatenate two strings.
+        eg: +, +=, etc.
+
+    -->
     
     <script>
-        // Operators:
-        //  1. Arithmetic operators: it is used to perform arithmetic operations on numbers. eg: +, -, *, /, %, ++, --, **, etc.
-        //  2. Assignment operators: it is used to assign values to variables. eg: =, +=, -=, *=, /=, %=, **=, etc.
-
         let a = 5
         let b = 4
         document.write("<br>Sum = ", a+b)
@@ -33,6 +63,61 @@
         document.write("<br>A = ", a)
         a **= 2
         document.write("<br>A = ", a)
+        document.write("<br><br>")
+
+        // Comparing
+        a = 5
+        b = "5"
+        document.write(a !== b)
+        document.write("<br><br>")
+
+        a = 5
+        document.writeln(a++)
+        document.writeln(a) // writeln() writes content to an HTML document, adding a newline after each output. It is similar to write() , but ensures, each piece of content appears on a newline. It is outdated and not suitable for dynamic content or production use.
+
+        document.writeln(++a)
+        document.writeln(a)
+        document.write("<br><br>")
+
+        a = 5
+        b = 4
+        a > b ? document.writeln("A is greater than B") : document.writeln("B is greater than A")
+
+        max = a > b ? a : b
+        document.writeln("<br>Greater value = ", max)
+        document.write("<br><br>")
+
+        a = 7
+        b = 6
+        let c = 5
+
+        if(a > b || a > c){
+            document.writeln("a is the greatest")
+        }
+        document.write("<br><br>")
+
+        document.writeln(!(a>b))
+        document.write("<br><br><br><br>")
+        
+        // Conditional Rendering
+        a = 5
+        b = 4
+        a > b && document.writeln("A is greater than B") // in this case since a > b is true so the second part of the statement i.e. document.writeln("A is greater than B") will also be executed but if a > b is false then the second part of the statement will not be executed and nothing will be printed on the webpage.
+        
+        c = 25
+        let d = c || 99 // when c is not defined or null or 0 or false then the value of d will be 99 but if c is defined and not null and not 0 and not false then the value of d will be c.
+        document.writeln("<br>D = ", d)
+
+        document.write("<br><br>")
+        document.writeln(5 & 2) // AND Operation
+        document.writeln(5 | 2) // OR Operation
+        document.writeln(5 << 1) // LEFT SHIFT Operation
+        document.writeln(5 >> 1) // RIGHT SHIFT Operation
+        
+        document.write("<br><br>")
+        let fname = "Ram"
+        let lname = "dai"
+        document.write(fname + lname)
     </script>
 </body>
 </html>
