@@ -122,7 +122,7 @@
         do{
             count++
             choice = confirm("Do you want to increase count?")
-        }while(count == true)
+        }while(choice == true)
         document.write("<br>Count = ", count)
 
         choice = true
@@ -147,9 +147,66 @@
         document.write("<br>After: ", rev)
 
         // WAP to convert binary to decimal
-        // WAP to convert decimal to binary
+        let binn = Number(prompt("Enter a binary number to convert: "))
+        document.write("<br>Binary Number: ", binn)
+        let remm = 0
+        let decc = 0
+        // let basee = 1
+        let poww = 0
+        while(binn > 0){
+            remm = binn % 10
+            // dec = dec + remm * basee
+            // basee = basee * 2
 
+            decc = decc + Math.pow(2, poww) * remm
+            binn = Math.floor(binn / 10)
+            poww++
+        }
+        document.write("<br>Decimal: ", decc)
+        
+        // WAP to convert decimal to binary
+        let dec = Number(prompt("Enter a decimal number to convert: "))
+        document.write("<br>Decimal Number: ", dec)
+
+        let r = 0
+        let bin = 0
+        // let base = 10
+        // let pow = 0
+        let base = 1
+        while(dec > 0){
+            rem = dec % 2
+            // bin = bin + rem * Math.pow(base, pow)
+            // pow++
+            bin = bin + rem * base
+            base = base * 10
+
+            dec = Math.trunc(dec/2) 
+        }
+        document.write("<br>Binary: ", bin)
+        
         // WAP to check if a given number is prime or not
+        let number = Number(prompt("Enter a number to check PRIME: "))
+        for(n = 2; n < number; n++){
+            if(number % n == 0){
+                break;
+            }
+        }
+        if(n == number){
+            document.write("<br> ", number, " is prime.")
+        }else{
+            document.write("<br>", number, " is not prime.")
+        }
+
+        // WAP to display fibonacci series up to n terms
+        var n = Number(prompt("Enter number of terms for fibonacci series: "))
+        a = 1
+        let b = 1
+        for(i = 1; i <= n; i++){
+            document.write("<br>", a, " ")
+            let c = a + b
+            a = b
+            b = c
+        }
 
     </script>
 </body>
