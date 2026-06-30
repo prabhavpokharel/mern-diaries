@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    
+        const or let both can be used but we prefer const
+
+        const functionName = () => {
+            // code to be executed
+        }
+
+    -->
+
+    <script>
+        const add = (m, n) => {
+            let sum = m + n
+            return sum
+        }
+
+        let arr = []
+        arr.map(function(x){
+            return x * 2
+        })
+
+        arr.map(x => x * 2) // arrow function. here we do not explicitly return the value as it is a single line of code. if we have multiple lines of code then we need to use return statement explicitly.
+
+        const substract = () => {
+            let a = Number(prompt("Enter first number for subtraction: "))
+            let b = Number(prompt("Enter second number for subtraction: "))
+            let diff = a - b
+            return diff
+        }
+
+        const product = (x, y) => {
+            document.write("<br>PRODUCT = ", x * y)
+        }
+
+        const division = () => {
+            let a = Number(prompt("Enter first number for division: "))
+            let b = Number(prompt("Enter second number for division: "))
+            document.write("<br>QUOTIENT = ", Math.floor(a / b)) // Math.floor() is used to round down the quotient to the nearest integer
+            document.write("<br>REMAINDER = ", a % b)
+        }
+
+        // if there is just one parameter then we can skip the parenthesis
+        const square = x => x * x // if we give curly braces then we need to use return statement explicitly. if we do not give curly braces then it will return the value implicitly.
+
+        // const square = x => { return x * x }
+
+        document.write("<br>SQUARE of 5 = ", square(5))
+
+        // recursive function: function that calls itself. it is used to solve problems that can be broken down into smaller sub-problems of the same type. it is used to solve problems that can be defined in terms of themselves. it is used to solve problems that can be solved by solving smaller instances of the same problem.
+        // - function must call itself
+        // - function must have a base case (condition to stop the recursion)
+
+        const factorial = n => {
+            // 5! = 5 * 4 * 3 * 2 * 1 = 120
+            if(n == 0 || n == 1){
+                return 1
+            }
+            else{
+                return n * factorial(n - 1)
+            }
+        }
+
+        document.write("<br>FACTORIAL of 5 = ", factorial(5))
+
+        // Fibonacci series: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+        const fibonacci = n => {
+            if(n == 0){
+                return 0
+            }
+            else if(n == 1){
+                return 1
+            }
+            else{
+                return fibonacci(n - 1) + fibonacci(n - 2)
+            }
+        }
+
+        document.write("<br>FIBONACCI of 5 = ", fibonacci(5), "<br><br>")
+
+        let num = prompt("Enter number of terms for fibonacci series: ")
+        for(n = 1; n <= num; n++){
+            document.write(fibonacci(n), " ")
+        }
+    </script>
+</body>
+</html>

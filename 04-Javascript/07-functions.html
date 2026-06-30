@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 
+    
+        Function: A block of code that is designed to perform a particular task. A function is executed when "something" invokes it (calls it). Functions are used to avoid repetition of code and to make the code more organized and readable. Functions can take inputs, called parameters, and can return an output.
+        
+        Syntax:
+        function functionName(parameters){
+            // code to be executed
+        }
+
+        functionName(arguments) // calling the function
+
+        NOTE: unlike arrow functions, function declarations are hoisted to the top of the code. This means that you can call a function before it is defined in the code.
+
+    -->
+
+    <script>
+        // function to add 2 numebers
+        function add(m=0, n=0){ // default value of m and n is 0
+            let sum = m + n
+            return sum
+        }
+
+        let ans = add(5, 6)
+        document.write("SUM = ", ans)
+
+        document.write("<br>SUM = ", add(4,5))
+        document.write("<br>SUM = ", add(4,6))
+        document.write("<br>SUM = ", add(4,7))
+        document.write("<br>SUM = ", add(4,8))
+
+        document.write("<br>SUM = ", add(4)) // NaN (Not a Number) as the second parameter is not passed
+        
+        function subtract(){
+            let a = Number(prompt("Enter first number: "))
+            let b = Number(prompt("Enter second number: "))
+            let sub = a - b
+            return sub
+        }
+
+        // document.write("<br>SUBTRACTION = ", subtract())
+
+        function product(x, y){
+            document.write("<br>PRODUCT = ", x * y)
+        }
+
+        product(5, 6)
+
+        function division(x, y){
+            let a = Number(prompt("Enter first number for division: "))
+            let b = Number(prompt("Enter second number for division: "))
+            document.write("<br>QUOTIENT = ", Math.floor(a / b)) // Math.floor() is used to round down the quotient to the nearest integer
+            document.write("<br>REMAINDER = ", a % b)
+        }
+        division()
+
+    </script>
+</body>
+</html>
