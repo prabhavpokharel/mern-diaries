@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    
+        Array: An array is a data structure that can hold more than one value at a time. It is a collection of elements, each identified by an index or key. Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.
+        
+        In JavaScript, arrays are dynamic, meaning they can grow and shrink in size as needed.
+
+    -->
+    <script>
+        let arr = [1, 2, 3, 'a', 'b', 'c', true, false, null, undefined, [1, 2, 3], {name: 'John', age: 30}, new Date(), function(){console.log('Hello World')}]
+        document.write("Array: ", arr, "<br>")
+
+        document.write("Length of Array: ", arr.length, "<br>") // Total number of elements in the array
+        document.write("First Element of Array: ", arr[0], "<br>") // Accessing the first element of the array
+        document.write("Last Element of Array: ", arr[arr.length - 1], "<br>") // Accessing the last element of the array
+        document.write("Second Last Element of Array: ", arr[arr.length - 2], "<br>") // Accessing the second last element of the array
+        document.write("6th Element of Array: ", arr[5], "<br>") // Accessing the 6th element of the array
+
+        
+        let fruits = ['Apple', 'Banana', 'Mango', 'Orange', 'Grapes']
+        document.write("<br>Fruits Array: ", fruits, "<br>")
+        
+        // push(newElement) -> adds a new element to the end of the array
+        fruits.push('Pineapple')
+        document.write("Fruits Array after push: ", fruits, "<br>")
+        
+        // unshift(newElement) -> adds a new element to the beginning of the array 
+        fruits.unshift('Strawberry')
+        document.write("Fruits Array after unshift: ", fruits, "<br>")
+
+        // pop() -> removes the last element from the array
+        let removedElement = fruits.pop() // removedElement will store the value of the removed element
+        document.write("Fruits Array after pop: ", fruits, "<br>")
+        document.write("Removed Element: ", removedElement, "<br>")
+
+        // shift() -> removes the first element from the array
+        removedElement = fruits.shift()
+        document.write("Fruits Array after shift: ", fruits, "<br>")
+        document.write("Removed Element: ", removedElement, "<br>")
+
+        // splice(startIndex, deleteCount, newElement1, newElement2, ...) -> removes elements from the array and/or adds new elements to the array
+        removed = fruits.splice(2, 2, 'Kiwi', 'Papaya') // removes 2 elements from index 2 and adds 'Kiwi' and 'Papaya' at index 2
+        document.write("Fruits Array after splice: ", fruits, "<br>")
+        document.write("Removed Elements: ", removed, "<br>")
+        removed = fruits.splice(2, 0, 'Watermelon', 'Peach') // this does not remove rather shifts the elements to the right and adds 'Watermelon' and 'Peach' at index 2
+        document.write("Fruits Array after splice: ", fruits, "<br>")
+        document.write("Removed Elements: ", removed, "<br>")
+
+        // sort() -> sorts the elements of the array in ascending order
+        fruits.sort()
+        document.write("Fruits Array after sort: ", fruits, "<br>")
+
+        // reverse() -> reverses the order of the elements in the array
+        fruits.reverse()
+        document.write("Fruits Array after reverse: ", fruits, "<br>")
+
+        // to NOT modify the original array but return a new array with the modified elements, we can use toSpliced() method. It is similar to splice() method but it does not modify the original array.
+        let new_fruits = fruits.toSpliced(2, 2) // this removes 2 elements from index 2 and returns a new array with the modified elements. The original array remains unchanged.
+        document.write("<br>Original Fruits Array after toSpliced: ", fruits, "<br>")
+        document.write("New Fruits Array after toSpliced: ", new_fruits, "<br>")
+
+        new_fruits = fruits.toSorted() // this sorts the elements of the array in ascending order and returns a new array with the modified elements. The original array remains unchanged.
+        document.write("<br>Original Fruits Array after toSorted: ", fruits, "<br>")
+        document.write("New Fruits Array after toSorted: ", new_fruits, "<br>")
+
+        new_fruits = fruits.toReversed()
+        document.write("<br>Original Fruits Array after toReversed: ", fruits, "<br>")
+        document.write("New Fruits Array after toReversed: ", new_fruits, "<br>")
+
+        // concat() -> merges two or more arrays and returns a new array. NOTE: The original arrays remain unchanged.
+        new_fruits = fruits.concat("Potato", "Carrot")
+
+        // Alternative way of using concat with array
+        // let veg = ["Potato", "Carrot"]
+        // new_fruits = fruits.concat(veg)
+
+        document.write("<br>Concat: ", new_fruits)
+        document.write("<br>Length: ", new_fruits.length)
+        document.write("<br>Original Array: ", fruits)
+
+        // slice(startIndex, endIndex) -> returns a new array containing the elements from startIndex to endIndex (not including endIndex). The original array remains unchanged.
+
+        // slice() returns a new array without modifying the original array.
+        // splice() modifies the original array by adding, removing, or replacing elements.
+
+        new_fruits = fruits.slice(2,4)
+        document.write("<br>Original Array: ", fruits)
+        document.write("<br>New Array (slice): ", new_fruits)
+
+        new_fruits = fruits.slice(-4,-2)
+        document.write("<br>New Array (slice): ", new_fruits)
+        
+        new_fruits = fruits.slice(-4) // this will return from the 4th last element to the end of the array
+        document.write("<br>New Array (slice): ", new_fruits)
+
+        // fill(value, startIndex, endIndex) -> fills the elements of the array with the specified value from startIndex to endIndex (not including endIndex). The original array is modified.
+        fruits.fill("Mango", 2, 4)
+        document.write("<br><br>Original Array after fill: ", fruits)
+
+        let new_list = [fruits, veg]
+        document.write("<br>NEW ARRAY = ", new_list)
+        document.write("<br>ARRAY LENGTH = ", new_list.length)
+
+        new_list = new_list.flat() // this will flatten the array and return a new array with all the elements of the nested arrays. The original array remains unchanged.
+        document.write("<br>NEW ARRAY after flat = ", new_list)
+        document.write("<br>ARRAY = ", new_list.length)  
+
+        // rest operator (...) -> allows us to expand an array into individual elements. It can be used in function calls, array literals, and destructuring assignments.
+        let [a, b, ...rest] = fruits // destructuring assignment
+        document.write("<br>First Element = ", a)
+        document.write("<br>Second Element = ", b)
+        document.write("<br>Remaining Elements = ", rest)
+
+        new_list = [...fruits, ...veg] // this will create a new array with all the elements of the fruits and veg arrays. The original arrays remain unchanged.
+        document.write("<br>New Fruits Array after rest operator = ", new_list)
+        document.write("<br>Length of New Fruits Array after rest operator = ", new_list.length)
+    </script>
+</body>
+</html>
