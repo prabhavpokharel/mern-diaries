@@ -75,11 +75,12 @@
         document.write("New Fruits Array after toReversed: ", new_fruits, "<br>")
 
         // concat() -> merges two or more arrays and returns a new array. NOTE: The original arrays remain unchanged.
-        new_fruits = fruits.concat("Potato", "Carrot")
+        
+        // new_fruits = fruits.concat("Potato", "Carrot")
 
         // Alternative way of using concat with array
-        // let veg = ["Potato", "Carrot"]
-        // new_fruits = fruits.concat(veg)
+        let veg = ["Potato", "Carrot"]
+        new_fruits = fruits.concat(veg)
 
         document.write("<br>Concat: ", new_fruits)
         document.write("<br>Length: ", new_fruits.length)
@@ -105,21 +106,21 @@
         document.write("<br><br>Original Array after fill: ", fruits)
 
         let new_list = [fruits, veg]
-        document.write("<br>NEW ARRAY = ", new_list)
+        document.write("<br><br>NEW ARRAY = ", new_list)
         document.write("<br>ARRAY LENGTH = ", new_list.length)
 
         new_list = new_list.flat() // this will flatten the array and return a new array with all the elements of the nested arrays. The original array remains unchanged.
-        document.write("<br>NEW ARRAY after flat = ", new_list)
+        document.write("<br><br>NEW ARRAY after flat = ", new_list)
         document.write("<br>ARRAY = ", new_list.length)  
 
         // rest operator (...) -> allows us to expand an array into individual elements. It can be used in function calls, array literals, and destructuring assignments.
         let [a, b, ...rest] = fruits // destructuring assignment
-        document.write("<br>First Element = ", a)
+        document.write("<br><br>First Element = ", a)
         document.write("<br>Second Element = ", b)
         document.write("<br>Remaining Elements = ", rest)
 
         new_list = [...fruits, ...veg] // this will create a new array with all the elements of the fruits and veg arrays. The original arrays remain unchanged.
-        document.write("<br>New Fruits Array after rest operator = ", new_list)
+        document.write("<br><br>New Fruits Array after rest operator = ", new_list)
         document.write("<br>Length of New Fruits Array after rest operator = ", new_list.length)
     </script>
 </body>
