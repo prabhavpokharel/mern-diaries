@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 
+    
+        Strings:
+            sequence of characters used to represent text
+            represented by single quotes, double quotes or backticks like this: 'Hello', "Hello", `Hello`
+            + - operator is used to concatenate strings
+    
+    -->
+
+    <script>
+        let fname = "UTSHAV"
+        let lname = "POUDEL"
+        let fullname = fname + " " + lname 
+        document.write("<br>Full Name: ", fullname)
+        document.write("<br>Length: ", fullname.length)
+
+        document.write("<br>First Letter: ", fullname[0])
+        document.write("<br>Last Letter: ", fullname[fullname.length - 1])
+
+        document.write("<br>Character at 5: ", fullname.charAt(5)) // charAt method returns the character at the specified index in a string. The index of the first character is 0, the second character is 1, and so on. If the index is out of range, it returns an empty string.
+        document.write("<br>ASCII of Character at 1: ", fullname.codePointAt(1)) // codePointAt method returns the Unicode value of the character at the specified index in a string.
+
+        document.write("<br>P is at ", fullname.indexOf('P')) // this will return the index of the first occurrence of the specified character in a string. If the character is not found, it returns -1.
+        document.write("<br>P is at ", fullname.indexOf('Z'))
+        document.write("<br>Last P is at ", fullname.lastIndexOf('P'))
+
+        // slice(start, end) -> extracts a section of a string and returns it as a new string. The original string will not be modified. The start index is inclusive and the end index is exclusive. If the end index is not provided, it will slice till the end of the string.
+        let new_name = fullname.slice(3, 6)
+        document.write("<br>New Name: ", new_name)
+        new_name = fullname.slice(-6, -1)
+        document.write("<br>New Name: ", new_name)
+        new_name = fullname.slice(-6)
+        document.write("<br>New Name: ", new_name)
+
+        // substring(start, end) -> returns the part of the string between the start and end indexes, or to the end of the string.
+        // NOTE:
+        // The start index is inclusive and the end index is exclusive.
+        // If the end index is not provided, it will return till the end of the string. 
+        // If the start index is greater than the end index, it will swap the two indexes.
+        new_name = fullname.substring(4, 7)
+        document.write("<br>New Name: ", new_name)
+        new_name = fullname.substring(-6, -1)
+        document.write("<br>New Name: ", new_name)
+        new_name = fullname.substring(-6, 3) // in this case, the start index is negative, so it will be treated as 0. The end index is 3, so it will return the substring from index 0 to index 3.
+        document.write("<br>New Name: ", new_name)
+        new_name = fullname.substring(3, -6) // same as above
+        document.write("<br>New Name: ", new_name)
+        new_name = fullname.substring(4)
+        document.write("<br>New Name: ", new_name)
+
+        // substr(start, length) -> returns the part of the string starting from the start index and having the specified length. If the length is not provided, it will return till the end of the string.
+        new_name = fullname.substr(4, 5)
+        document.write("<br>New Name: ", new_name)
+        
+        // If the start index is negative, it will be treated as 0. If the length is negative, it will be treated as 0.
+        new_name = fullname.substr(-6, 3)
+        document.write("<br>New Name: ", new_name)
+
+        let str = 'JAVASCRIPT - JavaScript is a programming language for web. JavaScript can be used for frontend and backend both.'
+        // search() -> searches a string for a specified value and returns the position of the match. If no match is found, it returns -1.
+        let search = str. search('javascript') // this will return -1 because the search is case sensitive. It will not find 'javascript' in the string.
+        document.write("<br>Searching: ", search)
+
+        search = str.search(/javascript/i) // using regular expression with 'i' flag to make the search case insensitive. This will return the index of the first occurrence of 'JavaScript' in the string.
+        document.write("<br>Searching: ", search)
+
+
+        // startsWith() -> checks if a string starts with a specified value. It returns true or false.
+        let starts = str.startsWith('JAVASCRIPT')
+        document.write("<br>Starts with 'JAVASCRIPT': ", starts)
+
+        // endsWith() -> checks if a string ends with a specified value. It returns true or false.
+        let ends = str.endsWith('both.')
+        document.write("<br>Ends with 'both.': ", ends)
+
+        // includes() -> checks if a string contains a specified value. It returns true or false.
+        let includes = str.includes('frontend') // we cannot use regular expression with includes() method. It will throw an error. We can use search() method instead.
+        document.write("<br>Includes 'frontend': ", includes)
+
+        // replace(string, newString) -> replaces a specified value with another value in a string. It returns a new string. The original string will not be modified.
+        let result = str.replace('JavaScript', 'Python')
+        document.write("<br>Result: ", result)
+        
+        result = str.replace(/JavaScript/ig, 'Python') // using regular expression with 'i' flag to make the search case insensitive and 'g' flag to replace all occurrences of 'JavaScript' in the string. This will return a new string with all occurrences of 'JavaScript' replaced with 'Python'.
+        document.write("<br>Result: ", result)
+
+        result = str.replaceAll('JavaScript', 'Python') // strings with the exact same case will be replaced. This will return a new string with all occurrences of 'JavaScript' replaced with 'Python'.
+        // BUT, regular expression cannot be used with replaceAll() method. It will throw an error. We can use replace() method instead.
+        document.write("<br>Result: ", result)
+
+        // reason why we need TRIM
+        fname = '   RAM     '
+        document.write("<br>Name: ", fname)
+        document.write("<br>Length: ", fname.length)
+        let names = ["RAM", "AJAY", " RAM", "  JEEVAN", "   YAM"] // in sorting , the spaces will be considered as characters and will be sorted accordingly. So, the names with spaces will come first in the sorted array.
+        names.sort()
+        document.write("<br>Sorted Names: ", names)
+        
+        // trim() -> removes whitespace from both ends of a string. It returns a new string. The original string will not be modified.
+        fname = "   RAM     "
+        document.write("<br>Length: ", fname.trim().length)
+
+        // trimStart() -> removes whitespace from the start of a string. It returns a new string. The original string will not be modified.
+        document.write("<br>Length: ", fname.trimStart().length)
+
+        // trimEnd() -> removes whitespace from the end of a string. It returns a new string. The original string will not be modified.
+        document.write("<br>Length: ", fname.trimEnd().length)
+
+        // padStart(targetLength, padString) & padEnd(targetLength, padString) -> pads the current string with another string (multiple times, if needed) until the resulting string reaches the given length. The padding is applied from the start or end of the current string. It returns a new string. The original string will not be modified.
+        let num = '123'
+        document.write("<br>Number: ", num.padStart(6, '0'))
+        document.write("<br>Number: ", num.padEnd(6, 'X'))
+
+
+        // split(character) -> splits a string into an array of substrings based on the specified character. It returns an array. The original string will not be modified.
+        let words = str.split(' ')
+        document.write("<br>Words: ", words)
+        document.write("<br>Number of words: ", words.length)
+
+        let sentences = str.split(". ") // the difference between just using '.' and '. ' in a sentence like "Hello. I am from Nepal." is that the first one will split the string into two parts: "Hello" and "I am from Nepal." while the second one will split the string into three parts: "Hello", "I am from Nepal" and "" (an empty string). This is because the second one is looking for a period followed by a space, while the first one is looking for just a period. So, if we use just a period, it will split the string into two parts, while if we use a period followed by a space, it will split the string into three parts.
+        sentences.map(sentence => document.write("<br>", sentence))
+
+        document.write("<br>Number of sentences: ", sentences.length)
+
+    </script>
+</body>
+</html>
