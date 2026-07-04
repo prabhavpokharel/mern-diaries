@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let fruits = ["Apple", "Orange", "Mango", "Papaya", "Banana", "Grapes"]
+
+        // for(i = 0; i < fruits.length; i++){
+        //     document.write("<h3>", fruits[i], "</h3>")
+        // }
+
+        // for in loop -> iterates over the index of the array
+        for(let i in fruits){
+            document.write("<h2>", fruits[i], "</h2>")
+        }
+
+        // for of loop -> iterates over the value of the array
+        for(let member of fruits){
+            document.write("<h3>", member, "</h3>")
+        }
+
+        // forEach() -> executes a provided function once for each array element
+        // Syntax: array.forEach(function(currentValue, index, arr), thisValue)
+
+        fruits.forEach(function(member, index){
+            document.write("<h2>", index + 1, " ", member, "</h2>")
+        })
+
+        // Alternative way of using forEach()
+        fruits.forEach((member, index)=>{
+            document.write("<h2>", index + 1, " ", member, "</h2>")
+        })
+
+        // we cannot return a new array using forEach() method. It will return undefined. If we want to return a new array, we can use map() method.
+        let new_fruits = fruits.forEach((member, index)=>{
+            document.write("<h2>", index + 1, " ", member, "</h2>")
+            return member.toUpperCase()
+        })
+        document.write("<br>NEW FRUITS: ", new_fruits)
+        
+        // map() -> creates a new array populated with the results of calling a provided function on every element in the calling array
+        fruits.map((member, index)=>{
+            document.write("<h2>", index + 1, " ", member, "</h2>")
+            return member.toUpperCase()
+        })
+        document.write("<br>NEW FRUITS: ", new_fruits)
+
+
+        // filter() -> creates a new array with all elements that pass the test implemented by the provided function
+        new_fruits = fruits.filter((member) => {
+            return member.match('ap')
+        })
+        document.write("<br>Filtered Fruits RESULTS: ", new_fruits)
+
+        // find() -> returns the value of the first element in the array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.
+        // find and filter are similar, but find returns the first match, while filter returns all matches.
+        new_fruits = fruits.find((member) => {
+            return member.match('ap')
+        })
+        document.write("<br>Find Fruits RESULTS: ", new_fruits)
+
+        // findIndex() -> returns the index of the first element in the array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.
+        let fruitIndex = fruits.findIndex((member) => {
+            return member.match('ap')
+        })
+        document.write("<br>Find Index RESULTS: ", fruitIndex)
+
+        // findLast() -> returns the value of the last element in the array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.
+        new_fruits = fruits.findLast((member) => {
+            return member.match('ap')
+        })
+        document.write("<br>Find Last RESULTS: ", new_fruits)
+
+        // findLastIndex() -> returns the index of the last element in the array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.
+        new_fruits = fruits.findLastIndex((member) => {
+            return member.match('ap')
+        })
+        document.write("<br>Find Last Index RESULTS: ", new_fruits, "<br>")
+
+
+        let num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        // reduce() -> executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+        // reduceRight() -> applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.
+        let sum = num.reduce((accumulator, current) => {
+            document.write("<br>Accumulator: ", accumulator, " Current: ", current)
+            return accumulator + current
+        }, 0) // the zero is the initial value of the accumulator. If we don't provide an initial value, the first element of the array will be used as the initial value and the iteration will start from the second element.
+        document.write("<br><br>Sum = ", sum, "<br>")
+        
+        // the difference between reduce() and reduceRight() is that reduce() starts from the left side of the array, while reduceRight() starts from the right side of the array.
+        let diff = num.reduceRight((accumulator, current) => {
+            document.write("<br>Accumulator: ", accumulator, " Current: ", current)
+            return accumulator - current
+        }, 1000) // the subtraction will start from the right side of the array, so the result will be 1000 - 10 - 9 - 8 - 7 - 6 - 5 - 4 - 3 - 2 - 1 = 945
+        document.write("<br><br>Answer = ", diff, "<br>")
+
+
+        num = [1, 2, 3, 11, 23, 34, 42, 100, 200, 1000]
+        // num.sort() will sort the array in ascending order by default, but it will sort the array as strings, so the result will be [1, 100, 1000, 11, 2, 200, 23, 34, 42]
+        // to sort the array in ascending order as numbers, we need to provide a compare function
+        num.sort((a, b) => {
+            document.write("<br>", a, " ", b, " ", a - b)
+            return a - b
+        })
+        document.write("<br>", num)
+
+        // descending order
+        num.sort((a, b) => {
+            return b - a
+        })
+        document.write("<br>", num)
+
+
+        // indexOf() -> returns the first index at which a given element can be found in the array, or -1 if it is not present.
+        fruits = fruits.concat(fruits, fruits, fruits)
+        document.write("<br>", fruits)
+        // unlike find(), callback function is not required for indexOf() method, it takes the element to be searched as the first parameter and the index to start the search as the second parameter.
+        let search = fruits.indexOf('apple')
+        document.write("<br>Searching: ", search)
+        
+        search = fruits.indexOf('apple', 2)
+        document.write("<br>Searching: ", search)
+        
+        search = fruits.indexOf('apple', search + 1)
+        document.write("<br>Searching: ", search)
+
+        // lastIndexOf() -> returns the last index at which a given element can be found in the array, or -1 if it is not present.
+        search = fruits.lastIndexOf('apple')
+        document.write("<br>Searching: ", search)
+    </script>
+</body>
+</html>
