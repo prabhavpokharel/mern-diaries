@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+</head>
+<body>
+
+    <div>
+        <h1>COMPUTER</h1>
+        <img src="" alt="Computer" id="comp" width="200px">
+    </div>
+
+    <div>
+        <h1>PLAYER</h1>
+        <img src="" alt="Player" id="player" width="200px">
+    </div>
+
+    <div>
+        <h1 id="result"></h1>
+    </div>
+
+    <!-- Buttons to give player's input -->
+    <button onclick="player_input(0)">Rock</button>
+    <button onclick="player_input(1)">Paper</button>
+    <button onclick="player_input(2)">Scissor</button>
+
+    <script>
+
+        // Array stores image names.
+        // Index:
+        // 0 -> Rock
+        // 1 -> Paper
+        // 2 -> Scissor
+        let images = ["rock.png", "paper.png", "scissor.png"];
+
+
+        // Function is called whenever player clicks a button
+        const player_input = (input) => {
+
+            // Store player's choice
+            let player = input;
+
+            // Generate a random number between 0 and 2
+            let comp = Math.floor(Math.random() * 3);
+
+            // Display computer's image
+            document.getElementById("comp").src = images[comp];
+
+            // Display player's image
+            document.getElementById("player").src = images[player];
+
+            // If both selected same option
+            if(player == comp){
+                document.getElementById("result").innerText = "GAME DRAW";
+            }
+
+            // Player wins
+            else if(
+                (player == 0 && comp == 2) ||   // Rock beats Scissor
+                (player == 1 && comp == 0) ||   // Paper beats Rock
+                (player == 2 && comp == 1)      // Scissor beats Paper
+            ){
+                document.getElementById("result").innerText = "PLAYER WINS";
+            }
+
+            // If above conditions are false, computer wins
+            else{
+                document.getElementById("result").innerText = "COMPUTER WINS";
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

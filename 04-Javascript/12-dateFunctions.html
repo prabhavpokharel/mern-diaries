@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 id="timer"></h1>
+    
+    <script>
+        let today = new Date()
+        document.write("<br>", today)
+
+        let dob = new Date('2000', '1', '30', '19', '35', '59') // indexing is used here where 0 = January, 1 = February and so on. since 2000 is a leap year, February has 29 days. So, the date of birth is 30th February 2000 which is invalid. Hence, the output will be 1st March 2000.
+        document.write("Date of Birth: ", dob)
+
+        let yy = today.getFullYear()
+        document.write("<br>Year: ", yy)
+
+        let mm = today.getMonth() // this just give index so in next step we use array
+        let months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+        document.write("<br>Month: ", months[mm])
+
+        let dd = today.getDate()
+        document.write("<br>Date: ", dd)
+
+        let day = today.getDay()
+        let days = ["SUN", "MON", "TUES", "WEDNES", "THURS", "FRI", "SATUR"]
+        document.write("<br>Day: ", days[day], "DAY")
+
+        let hh = today.getHours()
+        let min = today.getMinutes()
+        let ss = today.getSeconds()
+        let ms = today.getMilliseconds()
+
+        document.write("<br>", hh, ":", min, ":", ss, ":", ms)
+        document.write(`<br>${hh>12?hh-12:hh}:${min}:${ss}:${ms}`) // this is backtick method which is used to write variables in string without using concatenation operator
+
+        let dateNow = today.toDateString() // only date part will be shown
+        document.write("<br>Date: ", dateNow)
+
+        let timeNow = today.toTimeString() // only time part will be shown
+        document.write("<br>Time: ", timeNow)
+
+        dateNow = today.toLocaleDateString()
+        document.write("<br>Date: ", dateNow)
+
+        timeNow = today.toLocaleTimeString()
+        document.write("<br>Time: ", timeNow)
+
+        document.write("<br>", Date.now()) // Returns the number of milliseconds elapsed since midnight, January 1, 1970 Universal Coordinated Time (UTC). Mostly used to make file name or IDs unique from others.
+
+        
+        function getTime(){
+            let today = new Date()
+            let hh = today.getHours()
+            let min = today.getMinutes()
+            let ss = today.getSeconds()
+            let ms = today.getMilliseconds()
+            // let timeNow = today.toLocaleTimeString()
+
+            // alternatively this can be used for shortcut
+            // document.getElementById('timer').innerHTML = timeNow
+
+            // document.write("<h1>", `<br>${hh>12?hh-12:hh}:${min.toString().padStart(2, '0')}:${ss.toString().padStart(2, '0')}:${ms.toString().padStart(3, '0')} ${hh>=12?'PM':'AM'}`, "</h1>")
+            // on using document.write() the output will be printed on page everytime the time updates so it not a good idea to use in any project
+
+            document.getElementById('timer').innerHTML = `<br>${hh>12?hh-12:hh}:${min.toString().padStart(2, '0')}:${ss.toString().padStart(2, '0')}:${ms.toString().padStart(3, '0')} ${hh>=12?'PM':'AM'}`
+        }
+
+        // getTime()
+        // doing just this is not enough because it will only run once and we want it to run every second so we use setInterval function
+
+        setInterval(getTime, 1)
+        
+    </script>
+</body>
+</html>

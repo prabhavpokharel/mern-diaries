@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Functions</title>
+</head>
+<body>
+
+    <script>
+        let PI = Math.PI
+        let sqrt2 = Math.SQRT2
+        document.write("<br>Square root of 2: ", sqrt2)
+        document.write("<br>", Math.pow(5, 3))
+
+        let r = Math.random()
+        document.write("<br>Random: ", r)
+
+        let n = r * 1e6
+        document.write("<br>Random: ", n)
+
+        // trunc() -> Returns the integer part of a number by removing any fractional digits.
+        document.write("<br>Truncate: ", Math.trunc(n))
+
+        // round() -> Returns the value of a number rounded to the nearest integer.
+        document.write("<br>Round: ", Math.round(n))
+
+        // floor() -> Returns the largest integer less than or equal to a given number.
+        document.write("<br>Floor: ", Math.floor(n))
+
+        // ceil() -> Returns the smallest integer greater than or equal to a given number.
+        document.write("<br>Ceil: ", Math.ceil(n))
+
+        // toFixed() -> Returns a string representing a number in fixed-point notation. 
+        document.write("<br>Fixed (3) : ", n.toFixed(3))
+
+        // toPrecision() -> Returns a string representing a number to a specified precision in fixed-point or exponential notation.
+        document.write("<br>Precision (6): ", n.toPrecision(6))
+
+        // toExponential() -> Returns a string representing a number in exponential notation.
+        document.write("<br>Exponential (3): ", n.toExponential(3))
+
+    </script>    
+</body>
+</html>
