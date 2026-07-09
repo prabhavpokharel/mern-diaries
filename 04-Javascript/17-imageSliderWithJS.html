@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 450px;
+            width: 75%;
+            margin: auto;
+            position: relative;
+        }
+        .img-slider{
+            height: 100%;
+            width: 100%;
+        }
+        .left{
+            position: absolute;
+            top: 50%;
+            left: 0px;
+        }
+        .right{
+            position: absolute;
+            top: 50%;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="" class="img-slider" alt=""> <!-- whenever you need to add image first use container then add the image -->
+        <button class="left">&lt;&lt;</button>
+        <button class="right">&gt;&gt;</button>
+    </div>
+
+    <script>
+        let images = ["./rock.png", "./paper.png", "./scissor.png"]
+
+        let sliderImg = document.querySelector('.img-slider')
+        let leftBtn = document.querySelector('.left')
+        let rightBtn = document.querySelector('.right')
+
+        let index = 0
+
+        sliderImg.src = images[index]
+
+        const nextImg = () => {
+            index++
+            if(index >= images.length){
+                index = 0
+            }
+            sliderImg.src = images[index]
+        }
+
+        rightBtn.addEventListener('click', nextImg)
+        
+
+        const prevImg = () => {
+            index--
+            if(index < 0){
+                index = images.length - 1
+            }
+            sliderImg.src = images[index]
+        }
+
+        leftBtn.addEventListener('click', prevImg)
+
+        // for auto next like slideshow
+        setInterval(nextImg, 3000)
+    </script>
+</body>
+</html>
