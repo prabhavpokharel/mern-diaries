@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    
+        Regular Expressions (RegEx) are patterns used to match character combinations in strings. In JavaScript, regular expressions are also objects. 
+        
+        These patterns are used with the exec() and test() methods of RegExp, and with the match(), matchAll(), replace(), replaceAll(), search(), and split() methods of String.
+
+        `` -> template literals
+        /abc/ -> regular expression
+        /.../ -> expression literal
+    
+        how it works:
+        /abc/ -> matches the string "abc"
+        /[abc]/ -> matches any one of the characters a, b, or c
+        /[a-e]/ -> matches any one of the characters a, b, c, d, or e
+        /[a-z]/ -> matches any one of the characters a, b, c, d, ..., z
+        /[A-Z]/ -> matches any one of the characters A, B, C, D, ..., Z
+        /[0-9]/ -> matches any one of the characters 0, 1, 2, 3, ..., 9
+        /[!@#$%&*+=-] -> matches any one of the characters !, @, #, $, %, &, *, +, =, -
+        
+        /[a-zA-Z0-9]/ -> matches any one of the characters a, b, c, d, ..., z, A, B, C, D, ..., Z, 0, 1, 2, 3, ..., 9
+        /\w/ -> matches any word character (alphanumeric or underscore)
+        
+        /\W/ -> matches any non-word character
+
+        /[a-zA-Z0-9_]/ -> matches any one of the characters a, b, c, d, ..., z, A, B, C, D, ..., Z, 0, 1, 2, 3, ..., 9 and _
+
+
+        ^ signifies the start of a string
+        $ signifies the end of a string
+        
+        Metacharacters:
+        . -> matches any character except newline
+        + -> compulsory, matches one or more occurrences of the preceding element. for example, /a+/ matches "a", "aa", "aaa", etc.
+        * -> optional, matches zero or more occurrences of the preceding element. for example, /a*/ matches "", "a", "aa", "aaa", etc.
+        {5} -> matches exactly 5 occurrences of the preceding element. for example, /a{5}/ matches "aaaaa"
+        {2, 5} -> matches between 2 and 5 occurrences of the preceding element. for example, /a{2, 5}/ matches "aa", "aaa", "aaaa", "aaaaa"
+        {2,} -> matches 2 or more occurrences of the preceding element. for example, /a{2,}/ matches "aa", "aaa", "aaaa", "aaaaa", etc.
+        {0, 5} -> matches between 0 and 5 occurrences of the preceding element. for example, /a{0, 5}/ matches "", "a", "aa", "aaa", "aaaa", "aaaaa"
+
+        In use:
+        username -> /^[a-zA-Z0-9_]{5,10}$/ -> matches a username that is 5 to 10 characters long and contains only letters and numbers.
+        phone number -> /^[0-9]{10}$/ -> matches a phone number that is exactly 10 digits long. for example in nepal, most of the phone number starts with 98 so the regex will be /^98[0-9]{8}$/ -> matches a phone number that starts with 98 and is exactly 10 digits long.
+        email -> /^[a-zA-Z0-9._%+-]+@(gmail)\.[a-zA-Z]{2,}$/ -> matches an email address that contains letters, numbers, and special characters before the @ symbol, followed by a domain name and a top-level domain.
+
+    -->
+
+    <script>
+        // let str = 'this is kathmandu, capital city of Nepal'
+        // let str = 'kathmandu'
+        // let str = 'a01234567'
+        // let str = 'bijaya'
+        // let str = 'manman'
+        // let str = 'cat'
+        // let str = 'aaaaaaat'
+        let str = 'a t'
+
+        // let expr = /kathmandu/
+        // let expr = /[zpy]/
+        // let expr = /[p-s]/
+        // let expr = /^[a-z]/
+        // let expr = /^at/
+        // let expr = /abc$/
+        // let expr = /^man$/
+        // let expr = /^.at$/
+        // let expr = /^.a+t$/
+        // let expr = /^.+t$/
+        // let expr = /^. t$/
+        // let expr = /^[.] t$/
+        let expr = /^a{0,5}t$/
+
+        str.match(expr) ? document.write(str, " matches ", expr) : document.write(str, " does not match ", expr)
+    </script>
+</body>
+</html>
