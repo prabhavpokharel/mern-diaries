@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    
+        Local Storage is a web storage that allows JavaScript sites and apps to store and access data right in the browser with no expiration date.
+
+        Syntax:
+        localStorage.setItem('key', 'value') // to set the value to the local storage
+        localStorage.getItem('key') // to get the value
+        localStorage.removeItem('key') // to remove the value
+        localStorage.clear() // to clear all the values
+    
+    -->
+    
+    <script>
+        let key = "age"
+        // Store data in localStorage.
+        // This only needs to be run once because localStorage persists
+        // even after the browser is closed (until it is removed manually).
+        // localStorage.setItem('name', "Ram")
+        // localStorage.setItem(key, 32)
+        // localStorage.setItem('isLoggedIn', JSON.stringify(true))
+
+        let name = localStorage.getItem('name')
+        document.write("<br>Name: ", name)
+        document.write("<br>Name Type: ", typeof(name))
+
+        // let age = localStorage.getItem(key)
+        // let age = Number(localStorage.getItem(key))
+        // alternative
+        let age = parseInt(localStorage.getItem(key))
+        document.write("<br>Age: ", age)
+        document.write("<br>Age Type: ", typeof(age))
+
+        // let isLoggedIn = localStorage.getItem("isLoggedIn")
+        let isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"))
+        document.write("<br>Type of isLoggedIn: ", typeof(isLoggedIn))
+
+        // let fruits = ["Apple", "Orange", "Mango"]
+        // JSON -> JavaScript Object Notation
+        //      Syntax: {
+        //          "key1": "value1",
+        //          "key2": "value2"
+        //      }
+        // JSON.stringify(object) -> converts the object into JSON string
+        // localStorage.setItem("Fruits", JSON.stringify(fruits))
+
+        let person = {
+            name: "Ram",
+            age: 32,
+            isAdmin: true
+        }
+
+        // localStorage.setItem('person', JSON.stringify(person))
+
+        // let fruits = localStorage.getItem('Fruits')
+        // JSON.parse(string) -> converts the JSON string into object
+        let fruits = JSON.parse(localStorage.getItem('Fruits'))
+        document.write("<br>Fruits: ", fruits)
+        document.write("<br>Fruits: ", fruits.length)
+        document.write("<br>Fruits: ", typeof(fruits))
+
+        fruits.map(fruit => document.write("<h2>", fruit, "</h2>"))
+
+        let storedPerson = JSON.parse(localStorage.getItem('person'))
+        document.write("<br>Name: ", storedPerson.name)
+        document.write("<br>Age: ", storedPerson.age)
+        document.write("<br>Is admin: ", storedPerson.isAdmin)
+
+        localStorage.removeItem('name')
+        localStorage.removeItem('age')
+
+        localStorage.clear()
+
+        sessionStorage.setItem('isLoggedIn', true)
+        localStorage.setItem('isLoggedIn', true)
+        // the localhost with port is common for other files in this folder, so localStorage will be shown only in current file, but sessionStorage will be shown in all the files in this folder
+        // for example: localStorage is used in remember me checkbox in login form, whereas sessionStorage is used in login form to keep the user logged in until the browser is closed
+    </script>
+</body>
+</html>
