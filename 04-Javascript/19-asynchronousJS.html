@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    
+        Synchronous JavaScript means that the code is executed line by line, in order. Each line of code waits for the previous line to finish before executing. This can lead to blocking behavior, where a long-running operation can prevent other code from running.
+
+        Similarly,
+        Asynchronous JavaScript allows for non-blocking behavior, where certain operations can be executed in the background while other code continues to run. This is often achieved through callbacks, promises, or async/await syntax.
+
+        There are main 3 ways to handle asynchronous operations in JavaScript:
+        1. Callbacks: A function is passed as an argument to another function and is executed after the asynchronous operation is complete.
+        2. Promises: An object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+        3. Async/Await: A more modern syntax that allows you to write asynchronous code in a synchronous-like manner, making it easier to read and understand.
+    
+    -->
+    
+    <script>
+        let fruits = ["Apple", "Orange"]
+        
+        const addFruit = newFruit => {
+            fruits.push(newFruit)
+        }
+        const displayFruit = () => {
+            document.write("<br>", fruits)
+        }
+
+        // Synchronous JavaScript example:
+        displayFruit()
+        addFruit('Mango')
+        displayFruit()
+        addFruit('Pear')
+        displayFruit()
+
+        const addFruitAsync = newFruit => {
+            setTimeout(() => {
+                fruits.push(newFruit)
+            }, 2000);
+        }
+
+        const displayFruitAsync = () => {
+            setTimeout(() => {
+                document.write("<br>", fruits)
+            }, 3000);
+        }
+
+        // displayFruitAsync()
+        // addFruitAsync('Mango')
+        // displayFruitAsync()
+        // addFruitAsync('Pear')
+        // displayFruitAsync()
+
+
+        // Callback Syntax:
+        //      function name(parameters, callback) {
+        //          // code
+        //          callback();
+        //      }
+
+        const addFruitCallback = (newFruit, callback) => {
+            setTimeout(() => {
+                fruits.push(newFruit)
+                callback()
+            }, 2000);
+        }
+
+        // displayFruitAsync()
+        addFruitCallback('Mango', displayFruitAsync) 
+        // here the addFruitCallback function is called with 'Mango' as the newFruit argument and displayFruitAsync as the callback function. After 2 seconds, 'Mango' is added to the fruits array, and then displayFruitAsync is called to display the updated fruits array after 3 seconds. no need to give parenthesis when passing function as argument as we have declared them like a variable.
+        addFruitCallback('Pear', displayFruitAsync)
+
+
+        // Promise Syntax:
+        //      const promise = new Promise((resolve, reject) => {
+        //          // code
+        //          if (success) {
+        //              resolve(result);
+        //          } else {
+        //              reject(error);
+        //          }
+        //      });
+
+        const addFruitPromise = newFruit => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let error = false
+                    if(!error){
+                        fruits.push(newFruit)
+                        resolve()
+                    }
+                    else{
+                        reject("<br>Failed to add fruit.")
+                    }
+                }, 2000);
+            })
+        }
+
+        // addFruitPromise('Mango')
+        //     .then(() => {
+        //         document.write("<br>Fruit added successfully.")
+        //     })
+        //     .then(displayFruitAsync)
+        //     .catch((error) => {
+        //         document.write(error)
+        //     })
+
+
+        // await Syntax:
+        //      async function name(parameters) {
+        //          // code
+        //          await someAsyncOperation();
+        //      }
+
+        async function demoFunciton() {
+            try{
+                await addFruitPromise('Mango') // this will wait for the addFruitPromise to resolve before moving to the next line of code.
+            }
+            catch(error){
+                document.write(error)
+            }
+            displayFruitAsync()
+        }
+
+        demoFunciton()
+
+
+        // fetch('https://jsonplaceholder.typicode.com/todos/1')
+        // .then(response => response.json())
+        // .then(json => console.log(json))
+
+        // Conventional function:
+        // async function fetchdata(){
+        // Arrow function:
+        const fetchdata = async () => {
+            let response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+            let json = await response.json()
+            console.log(json)
+        }
+
+        fetchdata()
+    </script>
+</body>
+</html>
