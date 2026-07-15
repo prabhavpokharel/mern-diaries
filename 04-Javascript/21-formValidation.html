@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="username">Username</label>
+        <input type="text" id="username">
+        <span id="username_msg"></span>
+
+        <br><br>
+        <label for="email">E-mail</label>
+        <input type="text" id="email">
+        <span id="email_msg"></span>
+
+        <br><br>
+        <label for="phone">Phone</label>
+        <input type="text" id="phone">
+        <span id="phone_msg"></span>
+
+        <br><br>
+        <label for="pwd">Password</label>
+        <input type="text" id="pwd">
+        <span id="pwd_msg"></span>
+
+        <br><br>
+        <button>Submit</button>
+    </form>
+
+    <script>
+        let usernameInput = document.getElementById('username')
+        let usernameMsg = document.getElementById('username_msg')
+
+        const showMsg = (element, msg, color = 'red') => {
+            element.innerHTML = msg
+            element.style.color = color
+        }
+        
+        const username_validation = () => {
+            let username = usernameInput.value // the reason of keeping this inside the function is because we want to get the value of the input field every time the function is called, not just once when the script is loaded.
+
+            if(!username.match(/^[a-z]+$/)){
+                showMsg(usernameMsg, "Username must only be alphabets")
+            }
+            else if(!username.match(/^.{3,}$/)){
+                showMsg(usernameMsg, "Username must be at least 3 characters")
+            }
+            else if(!username.match(/^.{0,15}$/)){
+                showMsg(usernameMsg, "Username must not exceed 15 characters")
+                
+                // usernameMsg.innerHTML = "Username must not exceed 15 characters"
+                // usernameMsg.style.color = "red"
+            }
+            else{
+                showMsg(usernameMsg, "Valid username", "green")
+            }
+        }
+
+        usernameInput.addEventListener('keyup', username_validation)
+
+        const phoneInput = document.getElementById('phone')
+        const phoneMsg = document.getElementById('phone_msg')
+
+        const phone_validation = () => {
+            let phone = phoneInput.value
+            if(!phone.match(/^[0-9]+$/)){
+                showMsg(phoneMsg, "Phone number must only be numbers")
+            }
+            else if(!phone.match(/^98/)){
+                showMsg(phoneMsg, "Phone number must be 10 digits")
+            }
+            else if(!phone.match(/^[0-9]{10}$/)){
+                showMsg(phoneMsg, "Phone number must be 10 digits")
+            }
+            else{
+                showMsg(phoneMsg, "Valid phone number", "green")
+            }
+        }
+        phoneInput.addEventListener('keyup', phone_validation)
+
+        const emailInput = document.getElementById('email')
+        const emailMsg = document.getElementById('email_msg')
+        const email_validation = () => {
+            let email = emailInput.value
+            if(!email.match(/^[a-z][a-z0-9_.]+[@](gmail)[.](com)$/)){
+                showMsg(emailMsg, "Email format incorrect")
+            }
+            else{
+                showMsg(emailMsg, "Valid email", "green")
+            }
+        }
+        emailInput.addEventListener('keyup', email_validation)
+
+        const pwdInput = document.getElementById('pwd')
+        const pwdMsg = document.getElementById('pwd_msg')
+
+        const password_validation = () => {
+            let password = pwdInput.value
+
+            if(password.length < 8){
+                showMsg(pwdMsg, "Password must be at least 8 characters")
+            }
+            else if(password.length > 20){
+                showMsg(pwdMsg, "Password must not exceed 20 characters")
+            }
+            else if(!password.match(/[A-Z]/)){
+                showMsg(pwdMsg, "Password must contain an uppercase letter")
+            }
+            else if(!password.match(/[a-z]/)){
+                showMsg(pwdMsg, "Password must contain a lowercase letter")
+            }
+            else if(!password.match(/[0-9]/)){
+                showMsg(pwdMsg, "Password must contain a number")
+            }
+            else if(!password.match(/[!@#$%^&*(),.?":{}|<>]/)){
+                showMsg(pwdMsg, "Password must contain a special character")
+            }
+            else if(password.match(/\s/)){
+                showMsg(pwdMsg, "Password must not contain spaces")
+            }
+            else{
+                showMsg(pwdMsg, "Strong password", "green")
+            }
+        }
+
+        pwdInput.addEventListener('keyup', password_validation)
+
+        
+        const form = document.getElementById("myForm")
+
+        form.addEventListener("submit", function(event){
+            // run all validations
+            username_validation()
+            phone_validation()
+            email_validation()
+            password_validation()
+
+            // if any field is not valid (not green), prevent submission
+            if(usernameMsg.style.color !== 'green' || phoneMsg.style.color !== 'green' || emailMsg.style.color !== 'green' || pwdMsg.style.color !== 'green'){
+                event.preventDefault() // Stop the form from submitting
+                alert("Please correct the errors before submitting.")
+            }
+        })
+    </script>
+</body>
+</html>
