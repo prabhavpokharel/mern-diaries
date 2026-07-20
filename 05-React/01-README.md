@@ -1,4 +1,4 @@
-# Module 6 — React.js Fundamentals
+# React.js Fundamentals
 
 ---
 
