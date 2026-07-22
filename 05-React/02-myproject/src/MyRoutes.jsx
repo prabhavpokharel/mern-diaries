@@ -6,6 +6,7 @@ import Services from './pages/Services'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import Layout from './components/layout/Layout'
+import Login from './pages/Login'
 
 const MyRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const MyRoutes = () => {
                     <Route path='/about' element={<About />} />
                     <Route path='/services' element={<Services />} />
                     <Route path='/contact' element={<Contact />} />
+                    <Route path='/login' element={<Login/>}/>
 
                     <Route path='*' element={<NotFound />} />
 
