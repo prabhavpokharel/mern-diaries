@@ -7,6 +7,7 @@ import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import Layout from './components/layout/Layout'
 import Login from './pages/Login'
+import Counter from './pages/Counter'
 
 const MyRoutes = () => {
     return (
@@ -19,6 +20,8 @@ const MyRoutes = () => {
                     <Route path='/services' element={<Services />} />
                     <Route path='/contact' element={<Contact />} />
                     <Route path='/login' element={<Login/>}/>
+
+                    <Route path='/counter' element={<Counter/>}/>
 
                     <Route path='*' element={<NotFound />} />
 
