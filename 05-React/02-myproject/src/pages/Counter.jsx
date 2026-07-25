@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Counter = () => {
     let [count, setCount] = useState(0)
@@ -8,6 +8,10 @@ const Counter = () => {
         setCount(++count)
         console.log(count)
     }
+    useEffect(()=>{
+        alert("Value updated")
+    }, [count, data])
+
   return (
     <div className='flex h-[80vh] justify-center items-center text-3xl flex-column'>
         Counter Value = {count}

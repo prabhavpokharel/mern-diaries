@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound'
 import Layout from './components/layout/Layout'
 import Login from './pages/Login'
 import Counter from './pages/Counter'
+import UserProfiles from './pages/UserProfiles'
 
 const MyRoutes = () => {
     return (
@@ -22,6 +23,8 @@ const MyRoutes = () => {
                     <Route path='/login' element={<Login/>}/>
 
                     <Route path='/counter' element={<Counter/>}/>
+
+                    <Route path='/userprofiles' element={<UserProfiles/>}/>
 
                     <Route path='*' element={<NotFound />} />
 
