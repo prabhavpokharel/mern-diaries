@@ -1,4 +1,5 @@
 import { MyContextProvider } from '../context/MyContext'
+import { MyThemeContextProvider } from '../context/MyThemeContext'
 import './App.css'
 // import First from './components/First'
 // import Second from './components/Second'
@@ -20,9 +21,12 @@ function App() {
       {/* <First/>
       <Second/> */}
 
-      <MyContextProvider>
-        <MyRoutes/>
-      </MyContextProvider>
+      <MyThemeContextProvider>
+        <MyContextProvider>
+          <MyRoutes/>
+        </MyContextProvider>
+      </MyThemeContextProvider>
+
     </>
   )
 }

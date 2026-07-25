@@ -9,6 +9,7 @@ import Layout from './components/layout/Layout'
 import Login from './pages/Login'
 import Counter from './pages/Counter'
 import UserProfiles from './pages/UserProfiles'
+import DataFetch from './pages/DataFetch'
 
 const MyRoutes = () => {
     return (
@@ -25,6 +26,7 @@ const MyRoutes = () => {
                     <Route path='/counter' element={<Counter/>}/>
 
                     <Route path='/userprofiles' element={<UserProfiles/>}/>
+                    <Route path='/data' element={<DataFetch/>}/>
 
                     <Route path='*' element={<NotFound />} />
 

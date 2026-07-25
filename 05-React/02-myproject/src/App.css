@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+.mylink-light {
+  @apply text-slate-900 no-underline;
+}
+
+.mylink-dark {
+  @apply text-slate-200 no-underline;
+}
+
+.input-light {
+  @apply outline-slate-800! outline-1!;
+}
+
+.bg-light{
+    @apply bg-slate-200
+}
+
+.bg-dark{
+    @apply bg-slate-600!
+}
