@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import PersonCard from "../components/PersonCard";
-import { MyContext } from "../../context/MyContext";
+import { MyContext } from "../context/MyContext";
 
 const UserProfiles = () => {
   const msg = useContext(MyContext);

@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { GoSignIn } from "react-icons/go";
 import { BsPersonPlus } from "react-icons/bs";
 import { BiCart, BiMoon, BiSun } from "react-icons/bi";
-import { MyThemeContext } from "../../../context/MyThemeContext";
+import { MyThemeContext } from '../../context/MyThemeContext'
+
 
 const Header = () => {
   let [isMenuOpen, setMenuOpen] = useState(false);
