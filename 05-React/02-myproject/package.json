@@ -19,6 +19,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.18.1",
     "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
