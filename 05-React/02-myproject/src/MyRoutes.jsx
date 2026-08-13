@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import Counter from './pages/Counter'
 import UserProfiles from './pages/UserProfiles'
 import DataFetch from './pages/DataFetch'
+import Post from './pages/Post'
 
 const MyRoutes = () => {
     return (
@@ -27,6 +28,8 @@ const MyRoutes = () => {
 
                     <Route path='/userprofiles' element={<UserProfiles/>}/>
                     <Route path='/data' element={<DataFetch/>}/>
+
+                    <Route path='/post/:id' element = {<Post/>}/>
 
                     <Route path='*' element={<NotFound />} />
 
