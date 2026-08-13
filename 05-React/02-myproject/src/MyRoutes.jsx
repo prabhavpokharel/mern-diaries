@@ -12,6 +12,7 @@ import UserProfiles from './pages/UserProfiles'
 import DataFetch from './pages/DataFetch'
 import Post from './pages/Post'
 import CounterRedux from './redux/CounterRedux'
+import Person from './redux/Person'
 
 const MyRoutes = () => {
     return (
@@ -33,6 +34,7 @@ const MyRoutes = () => {
                     <Route path='/post/:id' element = {<Post/>}/>
 
                     <Route path='/redux/counter' element = {<CounterRedux/>}/>
+                    <Route path='/redux/person' element = {<Person/>}/>
 
                     <Route path='*' element={<NotFound />} />
 

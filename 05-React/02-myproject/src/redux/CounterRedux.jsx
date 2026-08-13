@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const CounterRedux = () => {
-  const count = useSelector((store) => store.count);
+  const count = useSelector((store) => store.counterStore.count);
 
   const dispatch = useDispatch();
 
