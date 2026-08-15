@@ -1,60 +1,66 @@
-# Hooks, useState & Conditional Rendering
+# React.js — Day 6: Hooks, useState & Conditional Rendering
 
 ---
 
 ## What Are Hooks?
 
-Hooks are special functions React provides that let your components do things plain JavaScript can't — like remembering values, running side effects, or accessing context.
+Hooks are special functions React provides that let your components do things plain JavaScript can't — like remembering values between renders, running code in response to changes, or reading shared data from context.
 
-The key ones you'll use constantly:
+The ones you'll use constantly:
 
 - `useState` — remember and update values
 - `useEffect` — run code when something changes
-- `useRef`, `useContext`, `useReducer` — covered later
+- `useRef`, `useContext`, `useReducer` — covered in later sessions
 
-All hooks start with `use`. That's the convention.
+All hooks start with `use`. That's the convention, and it matters — React enforces rules around hooks specifically for functions that follow this naming pattern.
 
 ---
 
-## Why You Can't Just Use a Regular Variable
+## Why a Regular Variable Doesn't Work
 
-In JavaScript you'd naturally do:
+In plain JavaScript:
 
 ```js
 let count = 0
-count++
+count++  // works fine
 ```
 
-In React, **this doesn't work for the UI.** Here's why:
+In React, changing a plain variable does nothing to the screen. When a component renders, it runs top to bottom like a function call. React has no mechanism to watch plain variables — if you change one, React doesn't know, so it never re-renders.
 
-When a component renders, it runs top to bottom like a function. If you change a plain variable, React has no idea it changed — so it never re-renders. The value updates in memory but the screen stays the same.
+```jsx
+// ❌ This does nothing visible
+let count = 0
+const increase = () => {
+  count++  // count changes in memory, screen stays the same
+}
+```
 
-**State solves this.** When you update state through the setter function, React knows something changed and re-renders the component with the new value.
+**State solves this.** When you update state through the setter, React knows something changed and schedules a re-render with the new value.
 
-> Regular variable = React is blind to it.
-> State variable = React watches it and re-renders when it changes.
+> Regular variable → React is blind to it.
+> State variable → React watches it and re-renders when it changes.
 
 ---
 
-## useState — Syntax & How It Works
+## useState — Syntax and How It Works
 
 ```jsx
 import { useState } from 'react'
 
-let [count, setCount] = useState(0)
+const [count, setCount] = useState(0)
 ```
 
 Full pattern:
 
 ```jsx
-let [variableName, functionToUpdateIt] = useState(initialValue)
+const [variableName, setterFunction] = useState(initialValue)
 ```
 
-| Part | Purpose |
-| ------ | --------- |
-| `variableName` | Read the current value |
-| `functionToUpdateIt` | Call this to change the value — triggers re-render |
-| `useState(initialValue)` | Sets the starting value on first render |
+| Part | Role |
+|------|------|
+| `variableName` | The current value — read this in your JSX |
+| `setterFunction` | Call this to update the value — triggers a re-render |
+| `useState(initialValue)` | The starting value on the first render only |
 
 ### Initial values by data type
 
@@ -66,71 +72,64 @@ useState([])      // array
 useState({})      // object
 ```
 
-### The golden rule
+### The one rule you cannot break
 
-**Never modify state directly.** Always go through the setter.
+Never modify the state variable directly. Always go through the setter.
 
 ```jsx
-count = count + 1       // ❌ React doesn't see this
-setCount(count + 1)     // ✅ React re-renders with new value
+count = count + 1        // ❌ React doesn't see this — no re-render
+setCount(count + 1)      // ✅ React re-renders with the new value
 ```
 
 ---
 
-## `setCount(++count)` vs `setCount(count++)`
+## `setCount(++count)` vs `setCount(count++)` vs `setCount(count + 1)`
 
-This is a classic JS pre/post increment question that matters a lot in React.
-
-```jsx
-setCount(++count)   // Pre-increment: increments FIRST, then passes value
-setCount(count++)   // Post-increment: passes value FIRST, then increments
-```
-
-**Example with count = 5:**
+This comes up because of how JavaScript's pre- and post-increment operators work.
 
 ```jsx
-setCount(++count)
-// ++count → count becomes 6 first
-// setCount(6) → state updates to 6 ✅
-
-setCount(count++)
-// count++ → passes 5 to setCount
-// count becomes 6 after, but that change is discarded
-// setCount(5) → state stays at 5 ❌ (no visible change)
+setCount(++count)   // pre-increment: count becomes 6 first, then setCount(6)
+setCount(count++)   // post-increment: setCount(5), then count becomes 6 — but that change is discarded
 ```
 
-**Use `++count` (pre-increment) or better: `setCount(count + 1)`**
+With `count = 5`:
+- `++count` → passes `6` to setCount ✅
+- `count++` → passes `5` to setCount, the increment is thrown away ❌
 
-The safest and clearest way:
+**The right habit is neither.** Use the functional update form:
 
 ```jsx
-setCount(count + 1)   // ✅ Most readable, no confusion
+setCount(prev => prev + 1)   // ✅ always reads the latest value
 ```
+
+This matters because React can batch state updates. If you read `count` from the outer scope inside a setter, it might be stale by the time the setter runs. The functional form receives the guaranteed latest value as `prev` — no stale closure risk.
+
+For simple cases `setCount(count + 1)` works fine. But `prev => prev + 1` is the correct habit and you should use it consistently.
 
 ---
 
-## Inline Arrow Functions in onClick
+## Inline Arrow Functions in `onClick`
 
-For small, one-line operations you don't need a separate function:
+For simple one-liners, you don't need a named function:
 
 ```jsx
-// Instead of writing a function separately:
+// Named function — use when logic is more than one line
 const reset = () => setCount(0)
 <button onClick={reset}>Reset</button>
 
-// Just inline it:
+// Inline arrow — fine for simple one-liners
 <button onClick={() => setCount(0)}>Reset</button>
 ```
 
-Both are identical. Use inline for simple one-liners, named functions for anything more complex.
+Both are identical in behaviour. The inline version saves declaring a function for something trivial.
 
 ---
 
 ## Conditional Rendering
 
-Conditional rendering means showing or hiding elements based on state or data. React gives you two clean patterns for this in JSX:
+Conditional rendering is showing or hiding elements based on state. React has two patterns for this in JSX.
 
-### Pattern 1: `&&` (show or show nothing)
+### Pattern 1: `&&` — show this or nothing
 
 ```jsx
 {count < 20 && <button onClick={increase}>+</button>}
@@ -139,9 +138,16 @@ Conditional rendering means showing or hiding elements based on state or data. R
 If `count < 20` is `true` → renders the button.
 If `false` → renders nothing.
 
-Use this when you either show something or show nothing at all.
+**Important gotcha:** If the left side of `&&` evaluates to `0`, React renders the number `0` — not nothing.
 
-### Pattern 2: Ternary `? :` (show this OR show that)
+```jsx
+{count && <button>+</button>}        // ❌ renders "0" when count is 0
+{count > 0 && <button>+</button>}    // ✅ renders nothing when count is 0
+```
+
+Always use a proper boolean expression on the left side of `&&`. Never a raw number, length, or any value that could be `0`.
+
+### Pattern 2: Ternary `? :` — show this OR show that
 
 ```jsx
 {count === 0
@@ -150,28 +156,27 @@ Use this when you either show something or show nothing at all.
 }
 ```
 
-If `count === 0` → shows disabled button.
-Otherwise → shows active reset button.
+If `count === 0` → disabled button. Otherwise → active reset button.
 
-Use this when you need to choose between two different things.
+Use ternary when you need to choose between two different things. Use `&&` when you're choosing between something and nothing.
 
-### Combined in the Counter example
+### Combined — the counter example
 
 ```jsx
-{/* + button: only show if count hasn't hit 20 */}
-{count < 20 && <button onClick={increase}>+</button>}
+{/* + button: only when count hasn't hit the limit */}
+{count < 20 && <button onClick={() => setCount(prev => prev + 1)}>+</button>}
 
-{/* RESET: disabled if count is 0, active otherwise */}
+{/* RESET: disabled at 0, active otherwise */}
 {count === 0
   ? <button className="disabled">RESET</button>
   : <button onClick={() => setCount(0)}>RESET</button>
 }
 
-{/* - button: only show if count is above 0 */}
-{count > 0 && <button onClick={() => setCount(--count)}>-</button>}
+{/* - button: only when count is above 0 */}
+{count > 0 && <button onClick={() => setCount(prev => prev - 1)}>-</button>}
 ```
 
-The UI self-updates based on state. You don't manually show/hide — you describe the rules, React applies them on every render.
+The UI self-updates based on state. You describe the rules — React applies them on every render.
 
 ---
 
@@ -180,72 +185,71 @@ The UI self-updates based on state. You don't manually show/hide — you describ
 One component can have as many state variables as it needs:
 
 ```jsx
-let [count, setCount] = useState(0)
-let [data, setData] = useState(1000)
+const [count, setCount] = useState(0)
+const [data, setData] = useState(1000)
 ```
 
-They're completely independent. Updating `count` doesn't affect `data` and vice versa. Each has its own setter.
+They are completely independent. Updating `count` does not affect `data`. Each variable has its own setter and its own re-render cycle.
 
 ---
 
-## Important JSX Rule
+## One Root Element Per Component
 
-**Never put elements outside the parent (root) element of a component.**
+A component must return exactly one root element. Put everything inside a single parent or a fragment.
 
 ```jsx
-// ❌ Breaks
-const Counter = () => {
-  return (
+// ❌ Breaks — two root elements
+return (
+  <div>...</div>
+  <p>Outside</p>
+)
+
+// ✅ Fragment — invisible wrapper, no extra DOM element
+return (
+  <>
     <div>...</div>
-    <p>Outside the root</p>   // Can't be here
-  )
-}
-
-// ✅ Everything inside one root
-const Counter = () => {
-  return (
-    <>
-      <div>...</div>
-      <p>Inside the fragment</p>
-    </>
-  )
-}
+    <p>Inside</p>
+  </>
+)
 ```
-
-A component must return exactly one root element. Use a fragment `<></>` to group multiple elements without adding extra HTML.
 
 ---
 
 ## How Re-rendering Works — The Mental Model
 
-1. Component renders for the first time
-   → count = 0, data = 1000
-   → JSX evaluates: + button visible (0 < 20 ✅), - button hidden (0 > 0 ❌)
+```
+First render:
+  count = 0
+  → + button visible (0 < 20 ✅)
+  → - button hidden (0 > 0 ❌)
+  → RESET shows disabled version (count === 0 ✅)
 
-2. User clicks +
-   → increase() runs → setCount(++count) → setCount(1)
-   → React sees state changed → re-renders component
-   → count = 1 now
-   → JSX re-evaluates: + button still visible, - button now visible (1 > 0 ✅)
+User clicks +:
+  → setCount(prev => prev + 1) → count = 1
+  → React re-renders
+  → - button now visible (1 > 0 ✅)
+  → RESET shows active version (count !== 0)
 
-3. User clicks RESET
-   → setCount(0)
-   → Re-render → count = 0
-   → - button disappears again
+User clicks RESET:
+  → setCount(0) → count = 0
+  → React re-renders
+  → - button hidden again
+  → RESET back to disabled version
+```
 
-Every state change triggers a fresh render. React is very fast at this — it only updates what actually changed in the DOM.
+Every state change triggers a fresh render. React diffs the new output against the previous one (Virtual DOM) and updates only what actually changed in the real DOM.
 
 ---
 
 ## Summary
 
 | Concept | Key Point |
-| --------- | ----------- |
-| Hooks | Special React functions. All start with `use`. |
-| `useState` | Makes React watch a value and re-render when it changes |
+|---------|-----------|
+| Hooks | Special React functions — all start with `use` |
+| `useState` | Gives React a value to watch — re-renders on change |
 | Never mutate directly | Always use the setter function |
-| `++count` vs `count++` | Use `count + 1` to be safe |
-| `&&` | Show this, or nothing |
-| `? :` | Show this, or show that |
+| Functional update form | `setCount(prev => prev + 1)` — always reads latest value |
+| `&&` | Show something or nothing — never put a raw number on the left |
+| `? :` | Show this or show that |
 | Multiple states | Each `useState` call is independent |
 | One root element | Everything inside a single parent or fragment |

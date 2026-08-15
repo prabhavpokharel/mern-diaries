@@ -1,10 +1,10 @@
-# React Router & Page Layouts
+# React.js — Day 3: React Router & Page Layouts
 
 ---
 
 ## Setup
 
-Install the Tailwind CSS IntelliSense extension in VS Code — it gives you autocomplete for Tailwind classes as you type. Essential.
+Install the Tailwind CSS IntelliSense extension in VS Code — it gives you autocomplete for Tailwind classes as you type. Worth doing before anything else.
 
 Install React Router:
 
@@ -12,13 +12,13 @@ Install React Router:
 npm install react-router-dom
 ```
 
-React Router lets you create multiple "pages" in a React SPA without the browser ever actually loading a new HTML file. The URL changes, the content changes — but it's all the same single page.
+React Router lets you create multiple "pages" in a React SPA without the browser ever actually loading a new HTML file. The URL changes, the content changes — but it's all the same single page running in the browser.
 
 ---
 
 ## Folder Structure
 
-```
+```text
 src/
 ├── pages/
 │   ├── Home.jsx
@@ -35,7 +35,7 @@ src/
 └── main.jsx
 ```
 
-Each page file gets a `rafce` boilerplate inside it. Think of pages as the big components that represent an entire screen.
+Pages are just components that represent an entire screen. Use `rafce` boilerplate inside each one.
 
 ---
 
@@ -64,40 +64,71 @@ const MyRoutes = () => {
 export default MyRoutes
 ```
 
-### What each line means
+### What each part does
 
 | Part | Meaning |
-|------|---------|
-| `<BrowserRouter>` | Enables routing for everything inside it. Uses the browser's URL bar to track location. Wraps everything. |
-| `<Routes>` | The container for all your route definitions. Only renders the first `<Route>` that matches the current URL. |
-| `<Route path='/' element={<Home />} />` | When the URL is `/`, render the `Home` component. |
-| `<Route path='/about' element={<About />} />` | When the URL is `/about`, render `About`. Same logic for others. |
+| ------ | --------- |
+| `<BrowserRouter>` | Enables routing for everything inside it. Watches the browser's URL bar and passes location info down to child components. |
+| `<Routes>` | Container for all route definitions. Looks at the current URL and renders the first `<Route>` that matches. |
+| `<Route path='/' element={<Home />} />` | When the URL is exactly `/`, render `<Home />`. |
+| `<Route path='/about' element={<About />} />` | When the URL is `/about`, render `<About />`. Same logic for the rest. |
 
-The browser never actually navigates to a new page. React Router just swaps out which component is displayed based on the URL.
+The browser never actually navigates to a new page. React Router intercepts URL changes and swaps which component is displayed.
+
+### Where to put `<BrowserRouter>`
+
+The example above wraps it inside `MyRoutes.jsx`. That works fine. In real projects, the more common pattern is putting `<BrowserRouter>` in `main.jsx` wrapping the entire app — so routing context is available everywhere from the start:
+
+```jsx
+// main.jsx
+import { BrowserRouter } from 'react-router-dom'
+
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+)
+```
+
+Both approaches work. Knowing both helps when reading other people's code.
 
 ---
 
-## The `Link` Component — Client-Side Navigation
+## `<Link>` vs `<NavLink>` — Client-Side Navigation
 
-Never use a regular `<a href="...">` tag for internal navigation in React. It causes a full browser reload, defeating the purpose of a SPA.
+Never use a regular `<a href="...">` tag for internal navigation in React. It causes a full browser reload, which defeats the entire point of a SPA.
 
 Use `<Link>` from React Router instead:
 
 ```jsx
 import { Link } from 'react-router-dom'
 
-<Link to='/about'>About</Link>         // ✅ No reload
-<a href='/about'>About</a>             // ❌ Full page reload
+<Link to='/about'>About</Link>   // ✅ No reload — swaps component instantly
+<a href='/about'>About</a>       // ❌ Full page reload
 ```
 
-`Link` updates the URL and swaps the component — instantly, no reload.
+### `<NavLink>` — for navigation menus
+
+`<NavLink>` works exactly like `<Link>` but automatically applies an `active` class when its `to` matches the current URL. You need this the moment you want to highlight which nav item is currently selected.
+
+```jsx
+import { NavLink } from 'react-router-dom'
+
+<NavLink
+  to='/about'
+  className={({ isActive }) => isActive ? 'text-white font-bold' : 'text-gray-400'}
+>
+  About
+</NavLink>
+```
+
+`className` accepts a function that receives `{ isActive }` — use it to return different classes depending on whether the link is active. Use `<NavLink>` in headers and sidebars, `<Link>` everywhere else.
 
 ---
 
 ## 404 Page — `NotFound.jsx`
 
 ```jsx
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 const NotFound = () => {
@@ -112,20 +143,19 @@ const NotFound = () => {
 export default NotFound
 ```
 
-This renders whenever someone visits a URL that doesn't match any defined route. Registered using `path='*'` which means "match anything not already matched."
+Registered with `path='*'` — matches any URL that didn't match a defined route. Must always be the **last route defined** (covered below).
 
-**Tailwind note:** `h-[80vh]` uses a custom value in square brackets — Tailwind lets you use any arbitrary CSS value this way.
+**Tailwind note:** `h-[80vh]` uses an arbitrary value in square brackets — Tailwind lets you use any valid CSS value this way when no utility class exists for it.
 
 ---
 
 ## Layout Pattern — Header + Footer on Every Page
 
-Instead of importing `<Header>` and `<Footer>` into every single page component, you create one `Layout` component that wraps all pages. This is the standard approach.
+Instead of importing `<Header>` and `<Footer>` into every single page, you create one `Layout` component that wraps all pages. Header and Footer are defined once. Only the middle content changes per route.
 
 ### `Layout.jsx`
 
 ```jsx
-import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
@@ -147,15 +177,13 @@ export default Layout
 
 ### What is `<Outlet>`?
 
-`Outlet` is a placeholder. It says: *"wherever I am, render the child route's component here."*
+`<Outlet>` is a placeholder that tells React Router: *"render the matched child route's component here."*
 
-Think of Layout as a picture frame — the Header and Footer are the frame, and `<Outlet>` is the hole in the middle where each page's content appears.
-
-When you visit `/about`, the frame stays fixed and `<Outlet>` fills in with the `About` component. When you visit `/contact`, the same frame stays and `<Outlet>` shows `Contact`.
+Think of Layout as a picture frame. The Header and Footer are the frame. `<Outlet>` is the hole in the middle where each page's content appears. The frame never changes — only what's inside the hole does.
 
 ---
 
-## Updated Routes with Layout
+## Routes with Layout Applied
 
 ```jsx
 <BrowserRouter>
@@ -171,37 +199,45 @@ When you visit `/about`, the frame stays fixed and `<Outlet>` fills in with the 
 </BrowserRouter>
 ```
 
-### How it works
+`<Route element={<Layout />}>` has no `path`. It's not a URL rule — it's a wrapper. Every child route inside it renders within Layout's `<Outlet>`.
 
-`<Route element={<Layout />}>` has no `path`. It's not a URL rule — it's a wrapper. Every child route inside it gets rendered *inside* Layout's `<Outlet>`.
+### Why `path='*'` must be last
 
-So visiting `/about` renders:
+React Router v6 matches routes in the order they're defined. If `path='*'` were listed first, it would match every URL and nothing else would ever render. Always put the catch-all last.
 
-```
+### What visiting `/about` actually renders
+
+```text
 <Layout>
   <Header />
   <div>
-    <About />     ← Outlet fills this in
+    <About />    ← Outlet renders this
   </div>
   <Footer />
 </Layout>
 ```
 
-And `path='*'` catches every URL that didn't match anything above it — that's your 404.
+---
+
+## Nested Routes Go Deeper Than This
+
+The layout pattern is the most common use of nesting, but it scales further. A `/products` route could have a `/products/:id` child route that renders a product detail view inside the products layout — the same `<Outlet>` mechanism handles it at any depth. You don't need this now, but the pattern is the same.
 
 ---
 
 ## Visual Flow
 
-```
+```text
 URL: /about
 
-BrowserRouter detects URL → passes to Routes
-Routes finds matching Route → /about → <About />
-But /about is nested inside <Layout />
-So Layout renders first:
+BrowserRouter detects URL change
+  → passes to Routes
+  → Routes matches /about → <About />
+  → /about is nested inside <Layout />
+
+Layout renders:
   → <Header />
-  → <Outlet />  ← About.jsx renders here
+  → <Outlet />   ← <About /> renders here
   → <Footer />
 ```
 
@@ -209,10 +245,10 @@ So Layout renders first:
 
 ## HTML Entities in JSX
 
-JSX is strict about certain characters. Symbols like `<` and `>` break JSX because they're used for tags. Use HTML entities instead:
+JSX is strict about certain characters. `<` and `>` break JSX because they're used for tags. Use HTML entities for characters that would otherwise be parsed as JSX syntax:
 
 | Character | Entity |
-|-----------|--------|
+| ----------- | -------- |
 | `<` | `&lt;` |
 | `>` | `&gt;` |
 | `&` | `&amp;` |
@@ -227,9 +263,9 @@ JSX is strict about certain characters. Symbols like `<` and `>` break JSX becau
 
 ---
 
-## Summary — How It All Connects
+## How It All Connects
 
-```
+```text
 App.jsx
   └── <MyRoutes />
 
@@ -237,16 +273,16 @@ MyRoutes.jsx
   └── <BrowserRouter>
         └── <Routes>
               └── <Route element={<Layout />}>   ← wrapper, no path
-                    ├── path='/'        → <Home />
-                    ├── path='/about'   → <About />
-                    ├── path='/services'→ <Services />
-                    ├── path='/contact' → <Contact />
-                    └── path='*'        → <NotFound />
+                    ├── path='/'         → <Home />
+                    ├── path='/about'    → <About />
+                    ├── path='/services' → <Services />
+                    ├── path='/contact'  → <Contact />
+                    └── path='*'         → <NotFound />  ← always last
 
 Layout.jsx
   └── <Header />
-  └── <Outlet />   ← whichever page matches, renders here
+  └── <Outlet />   ← matched page component renders here
   └── <Footer />
 ```
 
-Header and Footer render once. Only the middle content swaps based on the URL. That's the Layout pattern.
+Header and Footer render once regardless of which route is active. Only the `<Outlet>` content changes. That's the layout pattern — define shared UI once, reuse it across every page.

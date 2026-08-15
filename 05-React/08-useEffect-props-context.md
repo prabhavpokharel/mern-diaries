@@ -1,16 +1,18 @@
-# useEffect, Props & Context
+# React.js — Day 7: useEffect, Props & Context
 
 ---
 
 ## useEffect
 
-`useEffect` lets you run code in response to something changing — a state variable, a prop, or just the component loading for the first time. These are called **side effects** — things that happen *because of* a state change, not as a direct result of user interaction.
+`useEffect` lets you run code in response to something changing — a state variable, a prop, or just the component mounting for the first time. These are called **side effects**: things that happen *because of* a render, not directly caused by a user interaction.
 
-**Real-world analogy:** On Amazon, when you adjust the price slider or select a brand filter (state changes), the product list on the right updates (the effect). The filter states trigger a data reload — that's `useEffect` in action.
+**Real-world example:** On Amazon, adjusting the price slider or selecting a brand filter changes state. The product list on the right updates in response. The filter state triggers a data reload — that's `useEffect` in action.
 
 ### Syntax
 
 ```jsx
+import { useEffect } from 'react'
+
 useEffect(() => {
   // side effect code here
 }, [dependencyArray])
@@ -19,17 +21,25 @@ useEffect(() => {
 ### Three forms
 
 ```jsx
-// 1. Runs on load AND whenever a, b, or c changes
-useEffect(() => { func }, [a, b, c])
+// 1. Runs on first load AND whenever a, b, or c changes
+useEffect(() => {
+  // runs when component mounts and when a, b, or c updates
+}, [a, b, c])
 
-// 2. Runs ONLY on first load (empty array = no dependencies)
-useEffect(() => { func }, [])
+// 2. Runs ONLY on first load — empty array means no dependencies
+useEffect(() => {
+  // runs once when component mounts
+}, [])
 
-// 3. Runs on load AND on every single state change (dangerous — avoid)
-useEffect(() => { func })
+// 3. No dependency array — runs on every single render
+useEffect(() => {
+  // runs after every render — usually not what you want
+})
 ```
 
-### In the counter example
+Form 3 fires on every state change in the component — including the ones triggered by the effect itself. This causes infinite loops in most real scenarios. Avoid it unless you have a specific reason.
+
+### Example
 
 ```jsx
 useEffect(() => {
@@ -37,13 +47,34 @@ useEffect(() => {
 }, [count, data])
 ```
 
-The alert fires whenever `count` or `data` changes. Both are in the dependency array.
+The alert fires when `count` or `data` changes. Both are watched via the dependency array.
 
 ---
 
-## Why the Alert Fires Twice on Reload
+## useEffect Cleanup
 
-If you're in development and see `useEffect` running twice on page load, it's because of **StrictMode** in `main.jsx`:
+`useEffect` can optionally return a **cleanup function**. React calls it before running the effect again (when dependencies change) and when the component unmounts.
+
+Without cleanup, things like intervals, event listeners, and subscriptions stack up on every render and cause memory leaks.
+
+```jsx
+useEffect(() => {
+  const interval = setInterval(() => {
+    console.log('tick')
+  }, 1000)
+
+  // return the cleanup function
+  return () => clearInterval(interval)
+}, [])
+```
+
+You haven't needed this yet, but you will the moment you use `setInterval`, `addEventListener`, or any external subscription inside `useEffect`. Always return a cleanup function for these.
+
+---
+
+## Why the Effect Fires Twice in Development
+
+If you see `useEffect` running twice on page load, it's because of **StrictMode** in `main.jsx`:
 
 ```jsx
 <React.StrictMode>
@@ -51,55 +82,55 @@ If you're in development and see `useEffect` running twice on page load, it's be
 </React.StrictMode>
 ```
 
-StrictMode intentionally mounts, unmounts, and remounts components to help you catch bugs — so every effect runs twice in development. **This only happens in development, not in production.** It's not a bug in your code.
+StrictMode intentionally mounts → unmounts → remounts components in development to surface bugs — particularly effects that don't clean up properly after themselves. If your effect causes a problem when it runs twice, the problem is in your code, not in StrictMode.
 
-You can remove `<React.StrictMode>` during development to avoid the noise, but keep it in for catching real bugs.
+**Do not remove StrictMode** to silence the double-fire. The correct fix is to write effects that handle being run twice safely — which usually means returning a proper cleanup function. StrictMode only does this in development; in production each effect runs exactly once.
 
 ---
 
-## Props — Passing Data into Components
+## Props — Passing Data Between Components
 
-**Props** (short for *properties*) are how you pass data from a parent component into a child component — just like passing arguments into a function.
+**Props** (short for *properties*) are how you pass data from a parent component into a child — the same concept as function arguments.
 
 ```jsx
-// Parent passes data
+// Parent passes data as attributes
 <PersonCard name="Ram" age="32" phone="9812345678" />
 
-// Child receives it
+// Child receives all attributes as a single object
 const PersonCard = (props) => {
   return <div>Name: {props.name}</div>
 }
 ```
 
-`props` is just a JavaScript object that React automatically creates from whatever attributes you put on the component tag.
+React automatically assembles whatever attributes you put on a component tag into a single `props` object.
 
 ### Destructuring Props
 
-Instead of `props.name`, `props.age` everywhere, you destructure directly in the function signature:
+Accessing `props.name`, `props.age` everywhere gets verbose. Destructure directly in the function signature instead:
 
 ```jsx
-// Without destructuring
+// Raw props object
 const PersonCard = (props) => {
   return <div>{props.name} {props.age}</div>
 }
 
-// With destructuring (cleaner)
+// Destructured in the parameter — the standard React style
 const PersonCard = ({ name, age, phone }) => {
   return <div>{name} {age} {phone}</div>
 }
 
-// Alternative: destructure inside the function body
+// Destructured inside the function body — less common but identical
 const PersonCard = (props) => {
   const { name, age, phone } = props
   return <div>{name} {age} {phone}</div>
 }
 ```
 
-All three are identical. The inline destructuring in the parameter is the most common React style.
+All three produce the same result. Inline destructuring in the parameter is the most common pattern in modern React.
 
 ### Default Props
 
-You can set default values so the component doesn't break when a prop isn't passed:
+If a parent doesn't pass a prop, its value is `undefined` — which silently breaks rendering. Set defaults to handle missing props:
 
 ```jsx
 const PersonCard = ({ name = 'N/A', age = 'N/A', phone = 'N/A' }) => {
@@ -114,23 +145,23 @@ const PersonCard = ({ name = 'N/A', age = 'N/A', phone = 'N/A' }) => {
 ```
 
 ```jsx
-<PersonCard name="Ram" age="32" phone="9812345678" />  // shows real data
-<PersonCard />                                           // shows N/A for all
+<PersonCard name="Ram" age="32" phone="9812345678" />  // renders real data
+<PersonCard />                                          // renders N/A for all
 ```
 
 ---
 
-## Context — Global State Without Drilling
+## Context — Shared State Without Prop Drilling
 
-### The Problem Props Create
+### The Problem
 
-Imagine you have data that many components across the app need — like a logged-in user's name. To get it from `App` down to a deeply nested component, you'd have to pass it as a prop through every component in between, even ones that don't need it. This is called **prop drilling** and it's painful.
+Imagine data that many components need — a logged-in user's name, the current theme, the cart count. To get that data from `App` down to a deeply nested component using props, you'd have to pass it through every component in between, even ones that don't use it at all. This is **prop drilling** — messy, hard to maintain, and it breaks the moment you restructure your component tree.
 
 ### What Context Solves
 
-Context lets you put data in one central place and any component in the tree can access it directly — no drilling through layers.
+Context provides a way to put data in one central place and let any component in the tree read it directly — no intermediate passing required.
 
-### Creating Context
+### Step 1 — Create the context
 
 ```jsx
 // context/MyContext.jsx
@@ -148,13 +179,15 @@ export const MyContextProvider = ({ children }) => {
 ```
 
 - `createContext()` creates the context object
-- `MyContextProvider` is a wrapper component that makes the value available to everything inside it
-- `value={...}` is what gets shared — can be a string, object, array, anything
-- `{children}` renders whatever is wrapped inside `<MyContextProvider>`
+- `MyContextProvider` is a wrapper component that makes `value` available to everything inside it
+- `{children}` renders whatever gets wrapped inside `<MyContextProvider>`
 
-### Providing Context — wrap in App.jsx
+**Note on the `value` prop:** This example uses a static string to keep things simple. In real usage, `value` is almost always an object containing both state and its setter — so that consumers can read *and* update the shared data. The theme context from the next session (`{ theme, setTheme }`) is the more realistic pattern.
+
+### Step 2 — Wrap your app in the provider
 
 ```jsx
+// App.jsx
 function App() {
   return (
     <MyContextProvider>
@@ -164,9 +197,9 @@ function App() {
 }
 ```
 
-Everything inside `<MyContextProvider>` can now access the context value. Think of it like a bubble — anything inside the bubble can read the shared value.
+Everything inside `<MyContextProvider>` can now access the context value. The provider acts like a bubble — anything inside the bubble can read what the bubble holds.
 
-### Consuming Context — useContext
+### Step 3 — Consume the context with `useContext`
 
 ```jsx
 import { useContext } from "react"
@@ -179,49 +212,49 @@ const UserProfiles = () => {
 }
 ```
 
-`useContext(MyContext)` grabs whatever `value` was set on the Provider — no props passed, no drilling.
+`useContext(MyContext)` reads whatever `value` was set on the nearest matching Provider above it in the tree. No props passed, no drilling.
 
 ---
 
-## Props vs Context — When to Use Which
+## Props vs Context
 
 | | Props | Context |
-| --- | --- | --- |
-| **Use when** | Data flows from parent to direct child | Data needed by many components across the tree |
-| **Best for** | Component-specific data (name, onClick) | Global data (user info, theme, cart, language) |
-| **Problem** | Prop drilling through many layers | Overhead for simple parent-child communication |
+|---|---|---|
+| **Use when** | Data flows from parent to direct child | Data needed across many components in the tree |
+| **Best for** | Component-specific data: `name`, `onClick`, `className` | Global data: logged-in user, theme, cart, language |
+| **Downside** | Becomes prop drilling when passed through many layers | Adds indirection — harder to trace where data comes from |
 
-One app can have **multiple contexts** — one for user auth, one for cart, one for theme, etc.
+One app can have multiple contexts — one for auth, one for theme, one for cart. Each is independent.
 
 ---
 
 ## How It All Connects
 
-```text
+```
 App.jsx
-  └── <MyContextProvider value="Good Afternoon">
+  └── <MyContextProvider>                         ← provides "Good Afternoon" to everything inside
         └── <MyRoutes />
-              └── ... routes ...
-                    └── <UserProfiles />
-                          → useContext(MyContext) → "Good Afternoon" ✅
-                          └── <PersonCard name="Ram" age="32" />
-                                → props.name = "Ram" ✅
+              └── <UserProfiles />
+                    → useContext(MyContext)        ← reads "Good Afternoon" directly, no props
+                    └── <PersonCard name="Ram" />
+                          → props.name = "Ram"    ← explicit, passed from parent
 ```
 
-- Context flows *down the tree invisibly* — no prop passing needed
-- Props flow *explicitly* from parent to direct child
+Context flows invisibly down the tree to whoever asks for it. Props flow explicitly from one component directly to its children.
 
 ---
 
 ## Summary
 
-| Hook/Concept | What it does |
-| --- | --- |
-| `useEffect(() => {}, [a,b])` | Run side effects when `a` or `b` changes |
-| `useEffect(() => {}, [])` | Run once on load only |
-| `props` | Object React creates from component attributes |
-| Destructuring props | Extract values cleanly in the function signature |
-| Default props | Fallback values when a prop isn't passed |
+| Hook / Concept | What it does |
+|----------------|-------------|
+| `useEffect(() => {}, [a, b])` | Run a side effect when `a` or `b` changes |
+| `useEffect(() => {}, [])` | Run once when the component first mounts |
+| Cleanup function | Return from `useEffect` to clear intervals, listeners, subscriptions |
+| StrictMode double-fire | Expected in development — don't remove StrictMode, fix the effect |
+| `props` | Object React builds from attributes on a component tag |
+| Destructuring props | Extract values cleanly in the function parameter |
+| Default props | Fallback values for missing props — prevents `undefined` errors |
 | `createContext()` | Creates a context object |
-| `<Context.Provider value={...}>` | Makes value available to all children |
-| `useContext(MyContext)` | Reads the context value from any component |
+| `<Context.Provider value={...}>` | Makes `value` available to all descendants |
+| `useContext(MyContext)` | Reads context value from any component inside the provider |
